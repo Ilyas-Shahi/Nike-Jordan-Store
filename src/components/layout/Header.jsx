@@ -14,7 +14,7 @@ const Header = () => {
     window.addEventListener('scroll', () => {
       setScreenSize(window.scrollY);
     });
-    console.log(screenSize);
+    // console.log(screenSize);
 
     return () => {
       window.removeEventListener('scroll', () => {

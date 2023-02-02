@@ -1,0 +1,17 @@
+.swiper-scrollbar {
+  background: transparent !important;
+}
+
+.swiper-scrollbar.swiper-scrollbar-horizontal {
+  height: 5px;
+  padding: 0 40px;
+}
+
+.swiper-scrollbar.swiper-scrollbar-horizontal > div:nth-child(1) {
+  display: none;
+}
+
+.swiper-scrollbar.swiper-scrollbar-horizontal > .swiper-scrollbar-drag {
+  width: 35vw !important;
+  background-color: rgba(0, 0, 0, 0.623);
+}
