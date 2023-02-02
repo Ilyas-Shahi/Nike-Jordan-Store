@@ -35,9 +35,7 @@
       "error",
       { "props": "never", "children": "never" }
     ],
-    "react/jsx-indent-props": ["error", 2],
-    "react/prop-types": "error",
-    "react/no-unused-prop-types": "error",
+
     "react/jsx-filename-extension": [
       "error",
       { "extensions": [".js", ".jsx"] }
@@ -51,6 +49,7 @@
     "react/jsx-no-target-blank": "off",
     "react/jsx-no-undef": "error",
     "react/react-in-jsx-scope": 0,
-    "import/no-extraneous-dependencies": 0
+    "import/no-extraneous-dependencies": 0,
+    "react/prop-types": "off"
   }
 }
