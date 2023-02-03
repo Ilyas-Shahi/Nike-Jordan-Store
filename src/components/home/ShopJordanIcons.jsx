@@ -1,9 +1,9 @@
+import { Link } from 'react-router-dom';
 import ButtonPrimary from '../layout/ButtonPrimary';
 
 import ClothingImg from '../../assets/clothing.jpg';
 import ShoesImg from '../../assets/shoes.jpg';
 import AccessoriesImg from '../../assets/accessories.jpg';
-import { Link } from 'react-router-dom';
 
 const ShopJordanIcons = () => {
   return (
@@ -14,7 +14,7 @@ const ShopJordanIcons = () => {
         <Link to="#" className="h-1/2 w-full">
           <div
             style={{ backgroundImage: `url(${ClothingImg})` }}
-            className="h-[1000px] w-full  bg-no-repeat flex items-end bg-cover bg-center2 p-12"
+            className="h-[1000px] w-full  bg-no-repeat flex items-end bg-cover bg-center p-12"
           >
             <div>
               <h4 className="mb-6 text-xl font-extrabold">CLOTHING</h4>

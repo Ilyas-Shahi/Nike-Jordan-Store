@@ -12,6 +12,6 @@
 }
 
 .swiper-scrollbar.swiper-scrollbar-horizontal > .swiper-scrollbar-drag {
-  width: 35vw !important;
+  width: 30vw !important;
   background-color: rgba(0, 0, 0, 0.623);
 }

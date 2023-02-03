@@ -5,7 +5,7 @@ import ButtonPrimary from '../layout/ButtonPrimary';
 const HeroSection = () => {
   return (
     <Link to="#">
-      <div className="p-12">
+      <div className="p-12 pt-6">
         <img src={JordanImg} alt="" className="w-full" />
 
         <div className="p-10 text-center">

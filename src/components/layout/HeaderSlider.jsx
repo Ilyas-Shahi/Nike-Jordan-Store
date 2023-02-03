@@ -8,16 +8,10 @@ import 'swiper/css/navigation';
 // import required modules
 import { Autoplay } from 'swiper';
 
-const HeaderSlider = (props) => {
-  const { screenSize } = props;
-
+const HeaderSlider = () => {
   return (
     <div>
-      <div
-        className={`bg-gray-100 text-center p-2 border-b ${
-          screenSize >= 60 && 'transition-all -mt-20'
-        }`}
-      >
+      <div className="bg-gray-100 text-center p-2 border-b">
         <Swiper
           spaceBetween={100}
           centeredSlides={true}
