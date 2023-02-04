@@ -1,17 +1,18 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+import { useCallback, useEffect, useState } from 'react';
+
 import HeaderSlider from './HeaderSlider';
 
 import NikeLogo from '../../assets/svg/nike-logo.svg';
-import JordanLogo from '../../assets/svg/jordan-logo.svg';
 import SearchIcon from '../../assets/svg/search-icon.svg';
 import HeartIcon from '../../assets/svg/heart-icon.svg';
 import CartIcon from '../../assets/svg/cart-icon.svg';
-import { useEffect, useState } from 'react';
 
 const Header = () => {
-  const [screenSize, setScreenSize] = useState(0);
+  const [scrollAnimation, setScrollAnimation] = useState(false);
+
   const [showBackdrop, setShowBackdrop] = useState(false);
   const [showElement, setShowElement] = useState(false);
 
@@ -20,22 +21,24 @@ const Header = () => {
   }, 400);
 
   useEffect(() => {
-    window.addEventListener('scroll', () => {
-      setScreenSize(window.scrollY);
-    });
-
-    return () => {
-      window.removeEventListener('scroll', () => {
-        setScreenSize(window.scrollY);
-      });
+    const handleScroll = () => {
+      if (window.scrollY >= 30) {
+        setScrollAnimation(true);
+      } else {
+        setScrollAnimation(false);
+      }
     };
-  }, [screenSize]);
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
       <div
         className={`flex items-center justify-between px-12 py-0 transition-all ${
-          screenSize >= 30 && 'pb-10 -mt-10'
+          scrollAnimation && 'pb-10 -mt-10'
         }`}
       >
         <img src={NikeLogo} alt="" className="w-20" />
@@ -95,9 +98,7 @@ const Header = () => {
 
       {showBackdrop && (
         <div
-          className={`fixed bg-white w-full z-50 ${
-            screenSize >= 30 && 'top-0'
-          }`}
+          className={`fixed bg-white w-full z-50 ${scrollAnimation && 'top-0'}`}
         >
           <div className="w-[40vw] mx-auto py-12">
             <p className="text-lg font-thin mb-4 text-gray-500">
@@ -113,8 +114,8 @@ const Header = () => {
 
       <HeaderSlider />
 
-      <div className={`${screenSize >= 140 && 'h-44'}`}></div>
-      <div
+      {/* <div className={`${screenSize >= 140 && 'h-44'}`}></div> */}
+      {/* <div
         className={`transition-all z-40 bg-white flex items-center w-full mt-10 px-12 ${
           screenSize >= 140
             ? 'fixed top-0 mt-0 justify-between py-3'
@@ -145,7 +146,7 @@ const Header = () => {
         </ul>
 
         <div className="w-28"></div>
-      </div>
+      </div> */}
 
       {showBackdrop && (
         <div

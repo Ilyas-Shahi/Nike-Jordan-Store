@@ -11,41 +11,32 @@ const ShopJordanIcons = () => {
       <h3 className="mb-6 text-2xl font-extrabold">SHOP JORDAN ICONS</h3>
 
       <div className="flex gap-3">
-        <Link to="#" className="h-1/2 w-full">
-          <div
-            style={{ backgroundImage: `url(${ClothingImg})` }}
-            className="h-[1000px] w-full  bg-no-repeat flex items-end bg-cover bg-center p-12"
-          >
-            <div>
-              <h4 className="mb-6 text-xl font-extrabold">CLOTHING</h4>
-              <ButtonPrimary>Shop</ButtonPrimary>
-            </div>
+        <Link to="#" className="w-full relative">
+          <div className="absolute z-10 bottom-12 left-12">
+            <h4 className="mb-6 text-xl font-extrabold">CLOTHING</h4>
+            <ButtonPrimary>Shop</ButtonPrimary>
           </div>
+
+          <img src={ClothingImg} alt="" className="w-full" />
         </Link>
 
-        <div className="flex flex-col w-full gap-3">
-          <Link to="#" className="h-1/2 w-full">
-            <div
-              style={{ backgroundImage: `url(${ShoesImg})` }}
-              className="flex items-end w-full p-12 bg-center bg-no-repeat bg-cover h-full"
-            >
-              <div>
-                <h4 className="mb-6 text-xl font-extrabold">SHOES</h4>
-                <ButtonPrimary>Shop</ButtonPrimary>
-              </div>
+        <div className="flex flex-col w-full justify-between">
+          <Link to="#" className="w-full relative">
+            <div className="absolute z-10 bottom-12 left-12">
+              <h4 className="mb-6 text-xl font-extrabold">SHOES</h4>
+              <ButtonPrimary>Shop</ButtonPrimary>
             </div>
+
+            <img src={ShoesImg} alt="" className="w-full" />
           </Link>
 
-          <Link to="#" className="h-1/2 w-full">
-            <div
-              style={{ backgroundImage: `url(${AccessoriesImg})` }}
-              className="flex items-end w-full p-12 bg-center bg-no-repeat bg-cover h-full"
-            >
-              <div>
-                <h4 className="mb-6 text-xl font-extrabold">ACCESSORIES</h4>
-                <ButtonPrimary>Shop</ButtonPrimary>
-              </div>
+          <Link to="#" className="w-full relative">
+            <div className="absolute z-10 bottom-12 left-12">
+              <h4 className="mb-6 text-xl font-extrabold">ACCESSORIES</h4>
+              <ButtonPrimary>Shop</ButtonPrimary>
             </div>
+
+            <img src={AccessoriesImg} alt="" className="w-full" />
           </Link>
         </div>
       </div>

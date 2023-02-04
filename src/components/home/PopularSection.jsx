@@ -69,12 +69,12 @@ const PopularSection = () => {
                 <Link to="#" className="group">
                   <SanityImage
                     imageRef={product.gallery.images[0].asset._ref}
-                    className="h-[460px] w-full object-cover"
+                    className="h-[30vw] w-full object-cover"
                   />
 
                   <div className="flex justify-between my-6">
                     <div>
-                      <p className="font-thin text-orange-900">
+                      <p className="font-thin text-amber-900">
                         {product.specialty}
                       </p>
                       <h4 className="text-sm font-extrabold">
@@ -98,7 +98,7 @@ const PopularSection = () => {
                       />
                     )}
                     {product.specialty && (
-                      <p className="w-2/3 mt-8 text-2xl text-yellow-900 transition-all duration-700 opacity-0 group-hover:opacity-100">
+                      <p className="w-2/3 mt-8 text-2xl text-amber-900 transition-all duration-700 opacity-0 group-hover:opacity-70">
                         Get this product with your free Nike Membership Profile
                       </p>
                     )}
