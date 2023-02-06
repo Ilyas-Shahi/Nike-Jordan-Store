@@ -19,7 +19,7 @@ const PopularSection = () => {
 
   const products = useFetch(`*[_type == 'product'] | order(_createdAt asc)`);
 
-  console.log(products[0]?.result);
+  console.log(products);
 
   return (
     <>
@@ -81,9 +81,8 @@ const PopularSection = () => {
                         {product.title}
                       </h4>
                       <p className="text-sm font-extrabold leading-none text-gray-600">
-                        {product.categories.map((category) => (
-                          // eslint-disable-next-line react/jsx-key
-                          <span>{category.toUpperCase()} </span>
+                        {product.categories.map((category, index) => (
+                          <span key={index}>{category.toUpperCase()} </span>
                         ))}
                       </p>
                     </div>
