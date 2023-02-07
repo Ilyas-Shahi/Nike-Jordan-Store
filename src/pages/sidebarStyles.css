@@ -1,0 +1,15 @@
+/* width */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Handle */
+.sidebar::-webkit-scrollbar-thumb {
+  background: #9d9d9d;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: #595959;
+}

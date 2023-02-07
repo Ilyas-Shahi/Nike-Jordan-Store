@@ -20,7 +20,6 @@ const useFetch = (query) => {
     };
 
     fetchData();
-    console.log('effect ran');
   }, [URL]);
 
   return [data];

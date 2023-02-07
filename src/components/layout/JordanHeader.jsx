@@ -23,10 +23,10 @@ const JordanHeader = () => {
       <div className={`${scrollAnimation && 'h-48'}`}></div>
 
       <div
-        className={`transition-all z-40 bg-white flex items-center w-full mt-10 px-12 ${
+        className={`transition-all z-40 bg-white flex items-center w-full px-12 ${
           scrollAnimation
-            ? 'fixed top-0 mt-0 justify-between py-3'
-            : 'flex-col justify-center'
+            ? 'fixed top-0 justify-between py-3'
+            : 'flex-col justify-center pt-10'
         }`}
       >
         <img

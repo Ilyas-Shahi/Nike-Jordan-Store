@@ -3,9 +3,14 @@ import { useState } from 'react';
 import OptionFiltersHeader from '../components/shop/OptionFiltersHeader';
 import FiltersSidebar from '../components/shop/FiltersSidebar';
 import ProductsGrid from '../components/shop/ProductsGrid';
+import useScrollTrigger from '../hooks/useScrollTrigger';
+
+import './sidebarStyles.css';
 
 const Shop = () => {
-  const [showFilters, setShowFilters] = useState(false);
+  const [showFilters, setShowFilters] = useState(true);
+
+  const fixSidebar = useScrollTrigger(150);
 
   const handleShowFilters = (filter) => {
     setShowFilters(filter);
@@ -15,17 +20,24 @@ const Shop = () => {
     <>
       <OptionFiltersHeader handleShowFilters={handleShowFilters} />
 
-      <div className="px-12 duration-700">
+      <div className="flex px-12">
         <div
-          className={`inline-block  transition-all duration-300 bg-slate-50 ${
-            showFilters ? 'w-1/5' : 'w-0'
+          className={`relative flex-auto transition-all duration-300  ${
+            showFilters ? 'w-[15%]' : 'w-0'
           } `}
         >
-          {showFilters && <FiltersSidebar />}
+          <div
+            className={`sidebar h-screen overflow-y-scroll  ${
+              fixSidebar ? 'sticky top-12' : ''
+            }`}
+          >
+            {showFilters && <FiltersSidebar />}
+          </div>
         </div>
+
         <div
-          className={`inline-block transition-all duration-300 ${
-            showFilters ? 'w-4/5' : 'w-full'
+          className={`flex-auto transition-all duration-300 ${
+            showFilters ? 'w-[85%] ml-10' : 'w-full ml-0'
           }`}
         >
           <ProductsGrid />
