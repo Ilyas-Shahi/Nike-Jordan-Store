@@ -23,11 +23,11 @@ const Shop = () => {
       <div className="flex px-12">
         <div
           className={`relative flex-auto transition-all duration-300  ${
-            showFilters ? 'w-[15%]' : 'w-0'
+            showFilters ? 'w-[16%]' : 'w-0'
           } `}
         >
           <div
-            className={`sidebar h-screen overflow-y-scroll  ${
+            className={`sidebar h-screen pr-8 pb-16 overflow-y-scroll  ${
               fixSidebar ? 'sticky top-12' : ''
             }`}
           >
@@ -37,7 +37,7 @@ const Shop = () => {
 
         <div
           className={`flex-auto transition-all duration-300 ${
-            showFilters ? 'w-[85%] ml-10' : 'w-full ml-0'
+            showFilters ? 'w-[84%] ml-10' : 'w-full ml-0'
           }`}
         >
           <ProductsGrid />

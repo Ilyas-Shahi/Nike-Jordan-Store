@@ -1,61 +1,61 @@
 import { useState } from 'react';
 import ChevronDown from '../../assets/svg/chevron-down.svg';
 import FormCheck from '../layout/FormCheck';
+import FilterColor from './FilterColor';
+import FilterOption from './FilterOption';
 
 const FiltersSidebar = () => {
-  const [showGender, setShowGender] = useState(true);
-  const [showKids, setShowKids] = useState(true);
-  const [showPrice, setShowPrice] = useState(true);
-  const [showColor, setShowColor] = useState(true);
-
   return (
     <div className="w-full">
-      <div className="pt-3 border-t">
-        <button
-          onClick={() => setShowGender(!showGender)}
-          className="flex justify-between w-full mb-4 text-lg font-light"
-        >
-          <span>Gender</span>
-          <img
-            src={ChevronDown}
-            alt=""
-            className={`w-3 mt-1 transition-all ${showGender && 'rotate-180'}`}
-          />
-        </button>
+      <FilterOption title="Gender">
+        <FormCheck label="Men" id="men" />
+        <FormCheck label="Women" id="women" />
+        <FormCheck label="Unisex" id="unisex" />
+      </FilterOption>
 
-        <form
-          className={`overflow-hidden pb-6 ${
-            showGender ? 'animate-heightEntrance' : 'hidden'
-          }`}
-        >
-          <FormCheck label="Men" id="men" />
-          <FormCheck label="Women" id="women" />
-          <FormCheck label="Unisex" id="unisex" />
-        </form>
-      </div>
+      <FilterOption title="Kids">
+        <FormCheck label="Boys" id="boys" />
+        <FormCheck label="Girls" id="girls" />
+      </FilterOption>
 
-      <div className="pt-3 border-t">
-        <button
-          onClick={() => setShowKids(!showKids)}
-          className="flex justify-between w-full mb-4 text-lg font-light"
-        >
-          <span>Kids</span>
-          <img
-            src={ChevronDown}
-            alt=""
-            className={`w-3 mt-1 transition-all ${showKids && 'rotate-180'}`}
-          />
-        </button>
+      <FilterOption title="Price">
+        <FormCheck label="$0 - $25" id="0-25" />
+        <FormCheck label="$25 - $50" id="25-50" />
+        <FormCheck label="$50 - $100" id="50-100" />
+        <FormCheck label="$100 - $150" id="100-150" />
+        <FormCheck label="Over $150" id="150+" />
+      </FilterOption>
 
-        <form
-          className={`overflow-hidden pb-6 ${
-            showKids ? 'animate-heightEntrance' : 'hidden'
-          }`}
-        >
-          <FormCheck label="Boys" id="boys" />
-          <FormCheck label="Girls" id="girls" />
-        </form>
-      </div>
+      <FilterOption title="Color">
+        <div className="grid grid-cols-3 gap-3">
+          <FilterColor name="Purple" color="purple-800" id="purple" />
+          <FilterColor name="Black" color="black" id="black" />
+          <FilterColor name="Red" color="red-600" id="red" />
+          <FilterColor name="Orange" color="orange-500" id="orange" />
+          <FilterColor name="Blue" color="blue-500" id="blue" />
+          <FilterColor name="White" color="white" id="white" />
+          <FilterColor name="Brown" color="yellow-800" id="brown" />
+          <FilterColor name="Green" color="green-500" id="green" />
+          <FilterColor name="Yellow" color="yellow-300" id="yellow" />
+          <FilterColor name="Grey" color="gray-400" id="grey" />
+          <FilterColor name="Pink" color="pink-400" id="pink" />
+        </div>
+      </FilterOption>
+
+      <FilterOption title="Shoe Height">
+        <FormCheck label="Low Top" id="low-top" />
+        <FormCheck label="Mid Top" id="mid-top" />
+        <FormCheck label="High Top" id="high-top" />
+      </FilterOption>
+
+      <FilterOption title="Width">
+        <FormCheck label="Regular" id="regular" />
+      </FilterOption>
+
+      <FilterOption title="Surface">
+        <FormCheck label="Hard Ground" id="hard-ground" />
+        <FormCheck label="Turf" id="turf" />
+      </FilterOption>
     </div>
   );
 };

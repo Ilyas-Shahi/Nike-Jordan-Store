@@ -19,7 +19,9 @@ const HeroSection = () => {
             comfort, and heel lockdown for high-speed performance.
           </p>
 
-          <ButtonPrimary>Shop</ButtonPrimary>
+          <Link to="shop">
+            <ButtonPrimary>Shop</ButtonPrimary>
+          </Link>
         </div>
       </div>
     </Link>

@@ -9,6 +9,7 @@ import NikeLogo from '../../assets/svg/nike-logo.svg';
 import SearchIcon from '../../assets/svg/search-icon.svg';
 import HeartIcon from '../../assets/svg/heart-icon.svg';
 import CartIcon from '../../assets/svg/cart-icon.svg';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [scrollAnimation, setScrollAnimation] = useState(false);
@@ -41,7 +42,9 @@ const Header = () => {
           scrollAnimation && 'pb-10 -mt-10'
         }`}
       >
-        <img src={NikeLogo} alt="" className="w-20" />
+        <Link to="/">
+          <img src={NikeLogo} alt="" className="w-20" />
+        </Link>
 
         {!showBackdrop && (
           <ul className="flex gap-5 ml-48">
