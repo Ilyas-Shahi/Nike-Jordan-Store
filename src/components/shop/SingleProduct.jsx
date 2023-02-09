@@ -2,6 +2,9 @@ import useFetch from '../../hooks/useFetch';
 import SanityImage from '../layout/SanityImage';
 
 import KlarnaLogo from '../../assets/svg/klarna-logo-black.svg';
+import HeartIcon from '../../assets/svg/heart-icon.svg';
+import ShippingReturns from './ShippingReturns';
+import Reviews from './Reviews';
 
 const SingleProduct = () => {
   const productData = useFetch(
@@ -64,9 +67,28 @@ const SingleProduct = () => {
             <span className="underline">Learn More</span>
           </p>
 
-          <button className="bg-black text-white p-6 rounded-full w-full">
+          <button className="bg-black text-white p-5 my-2 rounded-full w-full">
             Add to Bag
           </button>
+          <button className="border border-gray-300 p-5 my-2 rounded-full w-full">
+            Favorite <img src={HeartIcon} alt="" className="inline w-4 ml-2" />
+          </button>
+
+          <p>
+            Shipping* <br />
+            To get accurate shipping information{' '}
+            <span className="border-b border-gray-800">Edit Location</span>
+          </p>
+
+          <p>Free Pickup</p>
+          <p>Find a Store</p>
+          <p className="text-sm">*Faster Shipping option may be available</p>
+
+          <p>{productData?.description}</p>
+
+          <ShippingReturns />
+
+          <Reviews />
         </div>
       </div>
     </>
