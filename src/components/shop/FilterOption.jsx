@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+
 import ChevronDown from '../../assets/svg/chevron-down.svg';
 
 const FilterOption = ({ children, title }) => {
