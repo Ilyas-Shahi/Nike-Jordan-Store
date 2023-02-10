@@ -78,9 +78,11 @@ const Header = () => {
           </div>
 
           {!showBackdrop && (
-            <button className="flex items-center justify-center w-10 h-10 px-1 py-2 rounded-full cursor-pointer hover:bg-gray-200">
-              <img src={HeartIcon} alt="" />
-            </button>
+            <Link to="/favorites">
+              <button className="flex items-center justify-center w-10 h-10 px-1 py-2 rounded-full cursor-pointer hover:bg-gray-200">
+                <img src={HeartIcon} alt="" />
+              </button>
+            </Link>
           )}
           {!showBackdrop && (
             <button className="flex items-center justify-center w-10 h-10 p-1 rounded-full cursor-pointer hover:bg-gray-200">
