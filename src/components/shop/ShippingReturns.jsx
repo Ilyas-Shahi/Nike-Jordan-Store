@@ -6,10 +6,10 @@ const ShippingReturns = () => {
   const [showOption, setShowOption] = useState(true);
 
   return (
-    <div className="pt-3 border-t">
+    <div className="pt-6 pb-3 border-t">
       <button
         onClick={() => setShowOption(!showOption)}
-        className="flex justify-between w-full mb-4 text-lg font-light"
+        className="flex justify-between w-full mb-4 text-xl"
       >
         <span>Free Shipping & Returns</span>
 
@@ -21,15 +21,19 @@ const ShippingReturns = () => {
       </button>
 
       <div
-        className={`overflow-hidden pb-6 ${
+        className={`overflow-hidden p-1 pb-6 ${
           showOption ? 'animate-heightEntrance' : 'hidden'
         }`}
       >
         <p>
-          Free standard shipping and free 60-day returns for Nike Members. Learn
-          more. Return policy exclusions apply. <br />
+          Free standard shipping and free 60-day returns for Nike Members.{' '}
+          <span className="underline">Learn more.</span>{' '}
+          <span className="underline">Return policy exclusions apply.</span>{' '}
           <br />
-          Pick-up available at select Nike Stores.
+          <br />
+          <span className="underline">
+            Pick-up available at select Nike Stores.
+          </span>
         </p>
       </div>
     </div>

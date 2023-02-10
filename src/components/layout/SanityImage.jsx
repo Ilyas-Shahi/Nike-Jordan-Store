@@ -1,5 +1,7 @@
 import ImageUrlBuilder from '@sanity/image-url';
 
+import NikeLoading from '../../assets/nike-loading.jpeg';
+
 const builder = new ImageUrlBuilder({
   projectId: '6tbteecs',
   dataset: 'production',
@@ -11,7 +13,13 @@ function urlFor(source) {
 }
 
 const SanityImage = ({ imageRef, className }) => {
-  return <img src={urlFor(imageRef).url()} alt="" className={className} />;
+  return (
+    <img
+      src={imageRef ? urlFor(imageRef).url() : NikeLoading}
+      alt=""
+      className={className}
+    />
+  );
 };
 
 export default SanityImage;

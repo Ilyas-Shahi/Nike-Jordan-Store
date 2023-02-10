@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import FacebookIcon from '../../assets/svg/facebook.svg';
 import TwitterIcon from '../../assets/svg/twitter.svg';
@@ -48,42 +48,46 @@ const featuredList = [
 ];
 
 const Footer = () => {
+  const { pathname } = useLocation();
+
   return (
     <>
-      <div className="flex justify-center gap-20 m-12 mx-auto w-max group">
-        <ul className="text-gray-400 flex flex-col gap-1.5 h-40 overflow-hidden group-hover:h-96 transition-all duration-500">
-          <li className="mb-4 text-black">Jordan Shoes</li>
-          {jordanShoesList.map((item, index) => (
-            <li key={index}>
-              <Link to="#">{item}</Link>
-            </li>
-          ))}
-        </ul>
-        <ul className="text-gray-400 flex flex-col gap-1.5 h-40 overflow-hidden group-hover:h-96 transition-all duration-500">
-          <li className="mb-4 text-black">Jordan Clothing</li>
-          {jordanClothingList.map((item, index) => (
-            <li key={index}>
-              <Link to="#">{item}</Link>
-            </li>
-          ))}
-        </ul>
-        <ul className="text-gray-400 flex flex-col gap-1.5 h-40 overflow-hidden group-hover:h-96 transition-all duration-500">
-          <li className="mb-4 text-black">Jordan Gear</li>
-          {jordanGearList.map((item, index) => (
-            <li key={index}>
-              <Link to="#">{item}</Link>
-            </li>
-          ))}
-        </ul>
-        <ul className="text-gray-400 flex flex-col gap-1.5 h-40 overflow-hidden group-hover:h-96 transition-all duration-500">
-          <li className="mb-4 text-black">Featured</li>
-          {featuredList.map((item, index) => (
-            <li key={index}>
-              <Link to="#">{item}</Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {pathname === '/' && (
+        <div className="flex justify-center gap-20 m-12 mx-auto w-max group">
+          <ul className="text-gray-400 flex flex-col gap-1.5 h-40 overflow-hidden group-hover:h-96 transition-all duration-500">
+            <li className="mb-4 text-black">Jordan Shoes</li>
+            {jordanShoesList.map((item, index) => (
+              <li key={index}>
+                <Link to="#">{item}</Link>
+              </li>
+            ))}
+          </ul>
+          <ul className="text-gray-400 flex flex-col gap-1.5 h-40 overflow-hidden group-hover:h-96 transition-all duration-500">
+            <li className="mb-4 text-black">Jordan Clothing</li>
+            {jordanClothingList.map((item, index) => (
+              <li key={index}>
+                <Link to="#">{item}</Link>
+              </li>
+            ))}
+          </ul>
+          <ul className="text-gray-400 flex flex-col gap-1.5 h-40 overflow-hidden group-hover:h-96 transition-all duration-500">
+            <li className="mb-4 text-black">Jordan Gear</li>
+            {jordanGearList.map((item, index) => (
+              <li key={index}>
+                <Link to="#">{item}</Link>
+              </li>
+            ))}
+          </ul>
+          <ul className="text-gray-400 flex flex-col gap-1.5 h-40 overflow-hidden group-hover:h-96 transition-all duration-500">
+            <li className="mb-4 text-black">Featured</li>
+            {featuredList.map((item, index) => (
+              <li key={index}>
+                <Link to="#">{item}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <div className="p-12 text-white bg-neutral-900">
         <div className="flex gap-4">
