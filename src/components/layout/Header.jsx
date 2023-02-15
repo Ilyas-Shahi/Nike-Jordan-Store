@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import HeaderSlider from './HeaderSlider';
 
@@ -9,7 +10,7 @@ import NikeLogo from '../../assets/svg/nike-logo.svg';
 import SearchIcon from '../../assets/svg/search-icon.svg';
 import HeartIcon from '../../assets/svg/heart-icon.svg';
 import CartIcon from '../../assets/svg/cart-icon.svg';
-import { Link } from 'react-router-dom';
+import HamburgerMenuIcon from '../../assets/svg/hamburger-menu.svg';
 
 const Header = () => {
   const [scrollAnimation, setScrollAnimation] = useState(false);
@@ -38,21 +39,23 @@ const Header = () => {
   return (
     <>
       <div
-        className={`flex items-center justify-between px-12 py-0 transition-all ${
+        className={`flex items-center justify-between px-6 md:px-12 py-0 transition-all ${
           scrollAnimation && 'pb-10 -mt-10'
         }`}
       >
         <Link to="/">
-          <img src={NikeLogo} alt="" className="w-20" />
+          <img src={NikeLogo} alt="" className="w-16 md:w-20" />
         </Link>
 
         {!showBackdrop && (
-          <ul className="flex gap-5 ml-48">
-            <li className="text-base cursor-pointer">New & Featured</li>
-            <li className="text-base cursor-pointer">Men</li>
-            <li className="text-base cursor-pointer">Women</li>
-            <li className="text-base cursor-pointer">Kids</li>
-            <li className="text-base cursor-pointer">Sale</li>
+          <ul className="hidden gap-5 md:flex lg:ml-44">
+            <li className="text-sm cursor-pointer md:text-base">
+              New & Featured
+            </li>
+            <li className="text-sm cursor-pointer md:text-base">Men</li>
+            <li className="text-sm cursor-pointer md:text-base">Women</li>
+            <li className="text-sm cursor-pointer md:text-base">Kids</li>
+            <li className="text-sm cursor-pointer md:text-base">Sale</li>
           </ul>
         )}
 
@@ -79,7 +82,7 @@ const Header = () => {
 
           {!showBackdrop && (
             <Link to="/favorites">
-              <button className="flex items-center justify-center w-10 h-10 px-1 py-2 rounded-full cursor-pointer hover:bg-gray-200">
+              <button className="items-center justify-center hidden w-10 h-10 px-1 py-2 rounded-full cursor-pointer md:flex hover:bg-gray-200">
                 <img src={HeartIcon} alt="" />
               </button>
             </Link>
@@ -89,6 +92,12 @@ const Header = () => {
               <img src={CartIcon} alt="" />
             </button>
           )}
+
+          <Link to="#">
+            <button className="flex items-center justify-center w-10 h-10 px-1 py-2 rounded-full cursor-pointer md:hidden hover:bg-gray-200">
+              <img src={HamburgerMenuIcon} alt="" />
+            </button>
+          </Link>
         </div>
 
         {showBackdrop && showElement && (
@@ -106,13 +115,13 @@ const Header = () => {
           className={`fixed bg-white w-full z-50 ${scrollAnimation && 'top-0'}`}
         >
           <div className="w-[40vw] mx-auto py-12">
-            <p className="text-lg font-thin mb-4 text-gray-500">
+            <p className="mb-4 text-lg font-thin text-gray-500">
               Popular Search Terms
             </p>
-            <p className="text-xl mb-2">Air Force 1</p>
-            <p className="text-xl mb-2">Jordan</p>
-            <p className="text-xl mb-2">Air Max</p>
-            <p className="text-xl mb-2">Blazer</p>
+            <p className="mb-2 text-xl">Air Force 1</p>
+            <p className="mb-2 text-xl">Jordan</p>
+            <p className="mb-2 text-xl">Air Max</p>
+            <p className="mb-2 text-xl">Blazer</p>
           </div>
         </div>
       )}

@@ -5,15 +5,17 @@ import KlarnaLogo from '../../assets/svg/klarna-logo-black.svg';
 import HeartIcon from '../../assets/svg/heart-icon.svg';
 import ShippingReturns from './ShippingReturns';
 import Reviews from './Reviews';
+import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 
 const SingleProduct = () => {
-  const productData = useFetch(
-    "*[_id == '8110b3d1-e302-4b30-91e2-f6d8f51ef8a9']"
-  )[0]?.result[0];
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const productData = useFetch(`*[_id == '${searchParams.get('id')}']`)[0]
+    ?.result[0];
 
   return (
     <>
-      <div className="flex p-12 leading-relaxed pb-40">
+      <div className="flex p-12 pb-40 leading-relaxed">
         <div className="grid w-2/3 grid-cols-2 gap-3 pl-12 pr-6">
           {productData?.gallery.images.map((image, index) => (
             <SanityImage key={index} imageRef={image.asset._ref} />
@@ -73,10 +75,10 @@ const SingleProduct = () => {
             <span className="underline">Learn More</span>
           </p>
 
-          <button className="w-full p-5 mb-3 text-white bg-black hover:bg-gray-800 rounded-full">
+          <button className="w-full p-5 mb-3 text-white bg-black rounded-full hover:bg-gray-800">
             Add to Bag
           </button>
-          <button className="w-full p-5 mb-12 border border-gray-300 hover:border-gray-500 rounded-full">
+          <button className="w-full p-5 mb-12 border border-gray-300 rounded-full hover:border-gray-500">
             Favorite <img src={HeartIcon} alt="" className="inline w-4 ml-2" />
           </button>
 
@@ -89,12 +91,22 @@ const SingleProduct = () => {
           </p>
 
           <p className="mt-6">Free Pickup</p>
-          <p className="border-b inline border-gray-800 pb-1.5">Find a Store</p>
-          <p className="text-sm mb-12 mt-5 text-gray-600">
+          <p className="border-b w-max border-gray-800 pb-1.5">Find a Store</p>
+          <p className="mt-5 mb-12 text-sm text-gray-600">
             *Faster Shipping option may be available
           </p>
 
-          <p className="mb-10">{productData?.description}</p>
+          <p className="mb-5">{productData?.description}</p>
+
+          <ul className="mb-5 list-inside list-disc">
+            {productData?.descList?.map((li, i) => (
+              <li key={i}>{li}</li>
+            ))}
+          </ul>
+
+          <p className="border-b mb-10 w-max border-gray-800 pb-1.5">
+            View Product Description
+          </p>
 
           <ShippingReturns />
 

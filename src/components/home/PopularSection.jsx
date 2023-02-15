@@ -19,8 +19,6 @@ const PopularSection = () => {
 
   const products = useFetch(`*[_type == 'product'] | order(_createdAt asc)`);
 
-  console.log(products);
-
   return (
     <>
       <div className="flex items-center justify-between px-12 my-8">
@@ -66,7 +64,10 @@ const PopularSection = () => {
           if (index < 10) {
             return (
               <SwiperSlide className="" key={product._id}>
-                <Link to="#" className="group">
+                <Link
+                  to={`/shop/${product.slug.current}/?id=${product._id}`}
+                  className="group"
+                >
                   <SanityImage
                     imageRef={product.gallery.images[0].asset._ref}
                     className="h-[30vw] w-full object-cover"

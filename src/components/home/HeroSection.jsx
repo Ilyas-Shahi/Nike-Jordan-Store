@@ -4,8 +4,8 @@ import ButtonPrimary from '../layout/ButtonPrimary';
 
 const HeroSection = () => {
   return (
-    <Link to="#">
-      <div className="p-12 pt-6">
+    <Link to="/shop/air-jordan-xxxvii-low-0.6229247868281476/?id=a931a362-de1c-48c2-b638-d63f2a1999ab">
+      <div className="p-6 md:p-12 pt-6">
         <img src={JordanImg} alt="" className="w-full" />
 
         <div className="p-10 text-center">
@@ -19,9 +19,7 @@ const HeroSection = () => {
             comfort, and heel lockdown for high-speed performance.
           </p>
 
-          <Link to="shop">
-            <ButtonPrimary>Shop</ButtonPrimary>
-          </Link>
+          <ButtonPrimary>Shop</ButtonPrimary>
         </div>
       </div>
     </Link>

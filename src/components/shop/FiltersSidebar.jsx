@@ -28,17 +28,17 @@ const FiltersSidebar = () => {
 
       <FilterOption title="Color">
         <div className="grid grid-cols-3 gap-3">
-          <FilterColor name="Purple" color="purple-800" id="purple" />
-          <FilterColor name="Black" color="black" id="black" />
-          <FilterColor name="Red" color="red-600" id="red" />
-          <FilterColor name="Orange" color="orange-500" id="orange" />
-          <FilterColor name="Blue" color="blue-500" id="blue" />
-          <FilterColor name="White" color="white" id="white" />
-          <FilterColor name="Brown" color="yellow-800" id="brown" />
-          <FilterColor name="Green" color="green-500" id="green" />
-          <FilterColor name="Yellow" color="yellow-300" id="yellow" />
-          <FilterColor name="Grey" color="gray-400" id="grey" />
-          <FilterColor name="Pink" color="pink-400" id="pink" />
+          <FilterColor name="Purple" color="bg-purple-800" id="purple" />
+          <FilterColor name="Black" color="bg-black" id="black" />
+          <FilterColor name="Red" color="bg-red-600" id="red" />
+          <FilterColor name="Orange" color="bg-orange-500" id="orange" />
+          <FilterColor name="Blue" color="bg-blue-500" id="blue" />
+          <FilterColor name="White" color="bg-white" id="white" />
+          <FilterColor name="Brown" color="bg-yellow-800" id="brown" />
+          <FilterColor name="Green" color="bg-green-500" id="green" />
+          <FilterColor name="Yellow" color="bg-yellow-300" id="yellow" />
+          <FilterColor name="Grey" color="bg-gray-400" id="grey" />
+          <FilterColor name="Pink" color="bg-pink-400" id="pink" />
         </div>
       </FilterOption>
 
