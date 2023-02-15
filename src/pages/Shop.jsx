@@ -9,6 +9,11 @@ import './sidebarStyles.css';
 
 const Shop = () => {
   const [showFilters, setShowFilters] = useState(true);
+  const [sortByQuery, setSortByQuery] = useState(' | order(_createdAt asc)');
+  const [genderFilter, setGenderFilter] = useState('');
+  const [priceFilter, setPriceFilter] = useState('');
+
+  let query = `*[_type == 'product']${sortByQuery}`;
 
   const fixSidebar = useScrollTrigger(150);
 
@@ -16,9 +21,29 @@ const Shop = () => {
     setShowFilters(filter);
   };
 
+  const handleSort = (option) => {
+    switch (option) {
+      case 'Featured':
+        setSortByQuery(' | order(_createdAt asc)');
+        break;
+      case 'Newest':
+        setSortByQuery(' | order(_createdAt desc)');
+        break;
+      case 'Price: High-Low':
+        setSortByQuery(' | order(price desc)');
+        break;
+      case 'Price: Low-High':
+        setSortByQuery(' | order(price asc)');
+        break;
+    }
+  };
+
   return (
     <>
-      <OptionFiltersHeader handleShowFilters={handleShowFilters} />
+      <OptionFiltersHeader
+        handleShowFilters={handleShowFilters}
+        handleSort={handleSort}
+      />
 
       <div className="flex px-12">
         <div
@@ -40,7 +65,7 @@ const Shop = () => {
             showFilters ? 'w-[84%] ml-10' : 'w-full ml-0'
           }`}
         >
-          <ProductsGrid />
+          <ProductsGrid query={query} />
         </div>
       </div>
     </>

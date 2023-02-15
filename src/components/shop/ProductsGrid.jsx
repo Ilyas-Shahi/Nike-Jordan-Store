@@ -1,15 +1,15 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import useFetch from '../../hooks/useFetch';
 import SanityImage from '../layout/SanityImage';
 
-const ProductsGrid = () => {
-  const products = useFetch(`*[_type == 'product'] | order(_createdAt asc)`);
+const ProductsGrid = ({ query }) => {
+  const products = useFetch(`${query}`);
 
   return (
     <div className="grid grid-cols-3 gap-3">
       {products[0]?.result.map((product, index) => {
-        if (index < 12) {
+        if (index < 24) {
           return (
             <div key={product._id}>
               <Link to={`/shop/${product.slug.current}/?id=${product._id}`}>

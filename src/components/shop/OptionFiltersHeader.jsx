@@ -11,7 +11,7 @@ const sortOptions = [
   'Price: Low-High',
 ];
 
-const OptionFiltersHeader = ({ handleShowFilters }) => {
+const OptionFiltersHeader = ({ handleShowFilters, handleSort }) => {
   const [showFilters, setShowFilters] = useState(true);
   const [showSort, setShowSort] = useState(false);
   const [sortBy, setSortBy] = useState('Featured');
@@ -21,7 +21,13 @@ const OptionFiltersHeader = ({ handleShowFilters }) => {
   const sortRef = useRef();
   const sortBtnRef = useRef();
 
-  handleShowFilters(showFilters);
+  useEffect(() => {
+    handleShowFilters(showFilters);
+  }, [handleShowFilters, showFilters]);
+
+  useEffect(() => {
+    handleSort(sortBy);
+  }, [handleSort, sortBy]);
 
   useEffect(() => {
     const checkClick = (e) => {

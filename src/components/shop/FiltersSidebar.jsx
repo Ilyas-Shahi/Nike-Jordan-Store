@@ -1,24 +1,42 @@
 import { useState } from 'react';
-import ChevronDown from '../../assets/svg/chevron-down.svg';
+
 import FormCheck from '../layout/FormCheck';
 import FilterColor from './FilterColor';
 import FilterOption from './FilterOption';
 
 const FiltersSidebar = () => {
+  const [priceRange, setPriceRange] = useState([]);
+
+  const handleSelectedOptions = (selectedOptions, ofForm) => {
+    if (ofForm === 'Price' && selectedOptions.length > 0) {
+      const currRange = [];
+
+      // console.log(selectedOptions.length);
+
+      currRange.push(selectedOptions[0].split('-')[0]);
+      // setPriceRange(currRange);
+
+      console.log(selectedOptions[0].split('-')[0]);
+    }
+  };
+
   return (
     <div className="w-full">
-      <FilterOption title="Gender">
+      <FilterOption
+        handleSelectedOptions={handleSelectedOptions}
+        title="Gender"
+      >
         <FormCheck label="Men" id="men" />
         <FormCheck label="Women" id="women" />
         <FormCheck label="Unisex" id="unisex" />
       </FilterOption>
 
-      <FilterOption title="Kids">
+      <FilterOption handleSelectedOptions={handleSelectedOptions} title="Kids">
         <FormCheck label="Boys" id="boys" />
         <FormCheck label="Girls" id="girls" />
       </FilterOption>
 
-      <FilterOption title="Price">
+      <FilterOption handleSelectedOptions={handleSelectedOptions} title="Price">
         <FormCheck label="$0 - $25" id="0-25" />
         <FormCheck label="$25 - $50" id="25-50" />
         <FormCheck label="$50 - $100" id="50-100" />
@@ -26,7 +44,7 @@ const FiltersSidebar = () => {
         <FormCheck label="Over $150" id="150+" />
       </FilterOption>
 
-      <FilterOption title="Color">
+      <FilterOption handleSelectedOptions={handleSelectedOptions} title="Color">
         <div className="grid grid-cols-3 gap-3">
           <FilterColor name="Purple" color="bg-purple-800" id="purple" />
           <FilterColor name="Black" color="bg-black" id="black" />
@@ -42,17 +60,23 @@ const FiltersSidebar = () => {
         </div>
       </FilterOption>
 
-      <FilterOption title="Shoe Height">
+      <FilterOption
+        handleSelectedOptions={handleSelectedOptions}
+        title="Shoe Height"
+      >
         <FormCheck label="Low Top" id="low-top" />
         <FormCheck label="Mid Top" id="mid-top" />
         <FormCheck label="High Top" id="high-top" />
       </FilterOption>
 
-      <FilterOption title="Width">
+      <FilterOption handleSelectedOptions={handleSelectedOptions} title="Width">
         <FormCheck label="Regular" id="regular" />
       </FilterOption>
 
-      <FilterOption title="Surface">
+      <FilterOption
+        handleSelectedOptions={handleSelectedOptions}
+        title="Surface"
+      >
         <FormCheck label="Hard Ground" id="hard-ground" />
         <FormCheck label="Turf" id="turf" />
       </FilterOption>

@@ -1,8 +1,8 @@
-import { useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import ChevronDown from '../../assets/svg/chevron-down.svg';
 
-const FilterOption = ({ children, title }) => {
+const FilterOption = ({ children, title, handleSelectedOptions }) => {
   const [showOption, setShowOption] = useState(true);
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -17,6 +17,8 @@ const FilterOption = ({ children, title }) => {
 
     setSelectedOptions(selected);
   };
+
+  handleSelectedOptions(selectedOptions, title);
 
   return (
     <div className="pt-3 border-b">
