@@ -9,14 +9,8 @@ const FiltersSidebar = () => {
 
   const handleSelectedOptions = (selectedOptions, ofForm) => {
     if (ofForm === 'Price' && selectedOptions.length > 0) {
-      const currRange = [];
-
-      // console.log(selectedOptions.length);
-
-      currRange.push(selectedOptions[0].split('-')[0]);
-      // setPriceRange(currRange);
-
-      console.log(selectedOptions[0].split('-')[0]);
+      // const currRange = [];
+      // selectedOptions.map((opt) => currRange.push(...opt.split('-')));
     }
   };
 
