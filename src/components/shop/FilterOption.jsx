@@ -2,7 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import ChevronDown from '../../assets/svg/chevron-down.svg';
-import { setKidsFilter, setPriceFilter } from '../../redux store/filtersSlice';
+import {
+  setColorFilter,
+  setGenderFilter,
+  setKidsFilter,
+  setPriceFilter,
+} from '../../redux store/filtersSlice';
 
 const FilterOption = ({ children, title }) => {
   const [showOption, setShowOption] = useState(true);
@@ -23,11 +28,21 @@ const FilterOption = ({ children, title }) => {
   };
 
   useEffect(() => {
+    if (title === 'Gender') {
+      dispatch(setGenderFilter(selectedOptions));
+    }
     if (title === 'Price') {
       dispatch(setPriceFilter(selectedOptions));
     }
     if (title === 'Kids') {
-      dispatch(setKidsFilter());
+      dispatch(
+        setKidsFilter(
+          selectedOptions.length > 0 ? `"Big Kid's", "Little Kid's"` : ''
+        )
+      );
+    }
+    if (title === 'Color') {
+      dispatch(setColorFilter(selectedOptions));
     }
   }, [dispatch, selectedOptions, title]);
 

@@ -6,9 +6,9 @@ const FiltersSidebar = () => {
   return (
     <div className="w-full">
       <FilterOption title="Gender">
-        <FormCheck label="Men" id="men" />
-        <FormCheck label="Women" id="women" />
-        <FormCheck label="Unisex" id="unisex" />
+        <FormCheck label="Men" id={`"Men's"`} />
+        <FormCheck label="Women" id={`"Women's"`} />
+        <FormCheck label="Unisex" id={`"Men's", "Women's"`} />
       </FilterOption>
 
       <FilterOption title="Kids">
@@ -21,22 +21,22 @@ const FiltersSidebar = () => {
         <FormCheck label="$25 - $50" id="25-50" />
         <FormCheck label="$50 - $100" id="50-100" />
         <FormCheck label="$100 - $150" id="100-150" />
-        <FormCheck label="Over $150" id="150+" />
+        <FormCheck label="Over $150" id="150-1000" />
       </FilterOption>
 
       <FilterOption title="Color">
         <div className="grid grid-cols-3 gap-3">
-          <FilterColor name="Purple" color="bg-purple-800" id="purple" />
-          <FilterColor name="Black" color="bg-black" id="black" />
-          <FilterColor name="Red" color="bg-red-600" id="red" />
-          <FilterColor name="Orange" color="bg-orange-500" id="orange" />
-          <FilterColor name="Blue" color="bg-blue-500" id="blue" />
-          <FilterColor name="White" color="bg-white" id="white" />
-          <FilterColor name="Brown" color="bg-yellow-800" id="brown" />
-          <FilterColor name="Green" color="bg-green-500" id="green" />
-          <FilterColor name="Yellow" color="bg-yellow-300" id="yellow" />
-          <FilterColor name="Grey" color="bg-gray-400" id="grey" />
-          <FilterColor name="Pink" color="bg-pink-400" id="pink" />
+          <FilterColor name="Purple" color="bg-purple-800" id={`"purple"`} />
+          <FilterColor name="Black" color="bg-black" id={`"black"`} />
+          <FilterColor name="Red" color="bg-red-600" id={`"red"`} />
+          <FilterColor name="Orange" color="bg-orange-500" id={`"orange"`} />
+          <FilterColor name="Blue" color="bg-blue-500" id={`"blue"`} />
+          <FilterColor name="White" color="bg-white" id={`"white"`} />
+          <FilterColor name="Brown" color="bg-yellow-800" id={`"brown"`} />
+          <FilterColor name="Green" color="bg-green-500" id={`"green"`} />
+          <FilterColor name="Yellow" color="bg-yellow-300" id={`"yellow"`} />
+          <FilterColor name="Grey" color="bg-gray-400" id={`"grey"`} />
+          <FilterColor name="Pink" color="bg-pink-400" id={`"pink"`} />
         </div>
       </FilterOption>
 

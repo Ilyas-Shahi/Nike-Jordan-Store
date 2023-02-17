@@ -1,10 +1,19 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import useFetch from '../../hooks/useFetch';
+import { numOfShownProductsSetter } from '../../redux store/filtersSlice';
 import SanityImage from '../layout/SanityImage';
 
 const ProductsGrid = ({ query }) => {
   const products = useFetch(`${query}`);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(numOfShownProductsSetter(products[0]?.result.length));
+  }, [dispatch, products]);
 
   return (
     <div className="grid grid-cols-3 gap-3">

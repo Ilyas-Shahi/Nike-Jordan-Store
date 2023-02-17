@@ -1,4 +1,5 @@
-import { useContext, useState } from 'react';
+/* eslint-disable react/no-unescaped-entities */
+import { useState } from 'react';
 
 import OptionFiltersHeader from '../components/shop/OptionFiltersHeader';
 import FiltersSidebar from '../components/shop/FiltersSidebar';
@@ -12,11 +13,15 @@ const Shop = () => {
   const [showFilters, setShowFilters] = useState(true);
   const [sortByQuery, setSortByQuery] = useState(' | order(_createdAt asc)');
 
+  const numOfShownProducts = useSelector(
+    (state) => state.filters.numOfShownProducts
+  );
+  const genderFilter = useSelector((state) => state.filters.genderFilter);
   const priceFilter = useSelector((state) => state.filters.priceFilter);
+  const kidsFilter = useSelector((state) => state.filters.kidsFilter);
+  const colorFilter = useSelector((state) => state.filters.colorFilter);
 
-  // console.log(priceFilter);
-
-  let query = `*[_type == 'product']${sortByQuery}`;
+  let query = `*[_type == 'product'${genderFilter}${priceFilter}${kidsFilter}${colorFilter}]${sortByQuery}`;
 
   const fixSidebar = useScrollTrigger(150);
 
@@ -69,6 +74,12 @@ const Shop = () => {
           }`}
         >
           <ProductsGrid query={query} />
+
+          {!numOfShownProducts && (
+            <h2 className="text-3xl mx-auto w-max mt-10">
+              Sorry, we couldn't find what you're looking for.
+            </h2>
+          )}
         </div>
       </div>
     </>

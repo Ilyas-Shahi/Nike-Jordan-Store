@@ -19,21 +19,31 @@ const LastSections = () => {
         </h3>
 
         <div className="flex gap-3 w-full">
-          <div className="w-full">
-            <img src={JordanMenImg} alt="" className="w-full" />
-            <h3 className="mt-12 mb-7 text-2xl font-extrabold">JORDAN MEN</h3>
-            <ButtonPrimary>Shop</ButtonPrimary>
-          </div>
-          <div className="w-full">
-            <img src={JordanWomenImg} alt="" className="w-full" />
-            <h3 className="mt-12 mb-7 text-2xl font-extrabold">JORDAN WOMEN</h3>
-            <ButtonPrimary>Shop</ButtonPrimary>
-          </div>
-          <div className="w-full">
-            <img src={JordanKidsImg} alt="" className="w-full" />
-            <h3 className="mt-12 mb-7 text-2xl font-extrabold">JORDAN KIDS</h3>
-            <ButtonPrimary>Shop</ButtonPrimary>
-          </div>
+          <Link to="shop">
+            <div className="w-full">
+              <img src={JordanMenImg} alt="" className="w-full" />
+              <h3 className="mt-12 mb-7 text-2xl font-extrabold">JORDAN MEN</h3>
+              <ButtonPrimary>Shop</ButtonPrimary>
+            </div>
+          </Link>
+          <Link to="shop">
+            <div className="w-full">
+              <img src={JordanWomenImg} alt="" className="w-full" />
+              <h3 className="mt-12 mb-7 text-2xl font-extrabold">
+                JORDAN WOMEN
+              </h3>
+              <ButtonPrimary>Shop</ButtonPrimary>
+            </div>
+          </Link>
+          <Link to="shop">
+            <div className="w-full">
+              <img src={JordanKidsImg} alt="" className="w-full" />
+              <h3 className="mt-12 mb-7 text-2xl font-extrabold">
+                JORDAN KIDS
+              </h3>
+              <ButtonPrimary>Shop</ButtonPrimary>
+            </div>
+          </Link>
         </div>
       </div>
 
@@ -41,7 +51,7 @@ const LastSections = () => {
         <h3 className="mb-6 text-2xl font-extrabold">THE LATEST FROM JORDAN</h3>
 
         <div className="flex gap-3">
-          <Link to="#" className="w-full relative">
+          <Link to="/shop" className="w-full relative">
             <div className="absolute z-10 bottom-12 left-12">
               <h4 className="mb-6 text-2xl leading-6 font-extrabold z-10">
                 JORDAN 23/7 <br /> 'SKY JORDAN'
@@ -52,7 +62,7 @@ const LastSections = () => {
             <img src={SkyJordanImg} alt="" className="w-full" />
           </Link>
 
-          <Link to="#" className="w-full relative">
+          <Link to="/shop" className="w-full relative">
             <div className="absolute z-10 bottom-12 left-12">
               <h4 className="mb-6 text-2xl text-white font-extrabold">
                 ELEVATED EVERYDAY ESSENTIALS

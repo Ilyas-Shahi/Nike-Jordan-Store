@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import FiltersIcon from '../../assets/svg/filters-icon.svg';
 import DownChevron from '../../assets/svg/chevron-down.svg';
 import useScrollTrigger from '../../hooks/useScrollTrigger';
+import { useSelector } from 'react-redux';
 
 const sortOptions = [
   'Featured',
@@ -20,6 +21,10 @@ const OptionFiltersHeader = ({ handleShowFilters, handleSort }) => {
 
   const sortRef = useRef();
   const sortBtnRef = useRef();
+
+  const numOfShownProducts = useSelector(
+    (state) => state.filters.numOfShownProducts
+  );
 
   useEffect(() => {
     handleShowFilters(showFilters);
@@ -61,7 +66,7 @@ const OptionFiltersHeader = ({ handleShowFilters, handleSort }) => {
               headerFixTrigger ? 'text-lg' : 'text-2xl'
             }`}
           >
-            Jordan Shoes & Sneakers (243)
+            Jordan Shoes & Sneakers ({numOfShownProducts})
           </h2>
         </div>
         <div className="relative flex gap-8">
