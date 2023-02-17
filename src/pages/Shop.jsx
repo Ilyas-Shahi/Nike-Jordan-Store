@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import OptionFiltersHeader from '../components/shop/OptionFiltersHeader';
 import FiltersSidebar from '../components/shop/FiltersSidebar';
@@ -6,12 +6,15 @@ import ProductsGrid from '../components/shop/ProductsGrid';
 import useScrollTrigger from '../hooks/useScrollTrigger';
 
 import './sidebarStyles.css';
+import { useSelector } from 'react-redux';
 
 const Shop = () => {
   const [showFilters, setShowFilters] = useState(true);
   const [sortByQuery, setSortByQuery] = useState(' | order(_createdAt asc)');
-  const [genderFilter, setGenderFilter] = useState('');
-  const [priceFilter, setPriceFilter] = useState('');
+
+  const priceFilter = useSelector((state) => state.filters.priceFilter);
+
+  // console.log(priceFilter);
 
   let query = `*[_type == 'product']${sortByQuery}`;
 

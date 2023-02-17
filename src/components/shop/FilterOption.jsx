@@ -1,10 +1,14 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import ChevronDown from '../../assets/svg/chevron-down.svg';
+import { setKidsFilter, setPriceFilter } from '../../redux store/filtersSlice';
 
-const FilterOption = ({ children, title, handleSelectedOptions }) => {
+const FilterOption = ({ children, title }) => {
   const [showOption, setShowOption] = useState(true);
   const [selectedOptions, setSelectedOptions] = useState([]);
+
+  const dispatch = useDispatch();
 
   const formRef = useRef();
 
@@ -18,7 +22,14 @@ const FilterOption = ({ children, title, handleSelectedOptions }) => {
     setSelectedOptions(selected);
   };
 
-  handleSelectedOptions(selectedOptions, title);
+  useEffect(() => {
+    if (title === 'Price') {
+      dispatch(setPriceFilter(selectedOptions));
+    }
+    if (title === 'Kids') {
+      dispatch(setKidsFilter());
+    }
+  }, [dispatch, selectedOptions, title]);
 
   return (
     <div className="pt-3 border-b">
