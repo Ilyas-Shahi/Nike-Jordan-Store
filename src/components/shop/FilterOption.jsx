@@ -7,7 +7,7 @@ import {
   setGenderFilter,
   setKidsFilter,
   setPriceFilter,
-} from '../../redux store/filtersSlice';
+} from '../../redux-store/filtersSlice';
 
 const FilterOption = ({ children, title }) => {
   const [showOption, setShowOption] = useState(true);

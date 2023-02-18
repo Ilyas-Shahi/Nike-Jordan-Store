@@ -9,6 +9,8 @@ import { useEffect, useState } from 'react';
 const Bag = ({ id, size, getTotal, index }) => {
   const productData = useFetch(`*[_id == '${id}']`)[0]?.result[0];
 
+  const [sizeValue, setSizeValue] = useState(size);
+
   const [total, setTotal] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
@@ -46,15 +48,13 @@ const Bag = ({ id, size, getTotal, index }) => {
                 <select
                   name="Size"
                   id="size"
+                  value={sizeValue}
+                  onChange={(e) => setSizeValue(e.target.value)}
                   style={{ backgroundImage: `url('${ChevronDown}')` }}
                   className="px-3 py-0 text-sm appearance-none bg-right bg-[size:12px] bg-opacity-10 bg-no-repeat opacity-70 font-light"
                 >
                   {productData?.size.map((option, i) => (
-                    <option
-                      key={i}
-                      value={option}
-                      selected={size === option ? true : false}
-                    >
+                    <option key={i} value={option}>
                       {option}
                     </option>
                   ))}

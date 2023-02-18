@@ -7,13 +7,11 @@ import SanityImage from '../components/layout/SanityImage';
 
 import HeartIcon from '../assets/svg/heart-icon.svg';
 import HeartFilledIcon from '../assets/svg/heart-filled.svg';
-
-// let dummyFavorites = [
-//   '8110b3d1-e302-4b30-91e2-f6d8f51ef8a9',
-//   '8110b3d1-e302-4b30-91e2-f6d8f51ef8a9',
-// ];
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart } from '../redux-store/addToCartSlice';
 
 const Favorites = () => {
+  const favoriteItems = useSelector((state) => state.favorites.favoriteItems);
   const [edit, setEdit] = useState(false);
   const [dummyFavorites, setDummyFavorites] = useState([
     '8110b3d1-e302-4b30-91e2-f6d8f51ef8a9',
@@ -44,10 +42,11 @@ const Favorites = () => {
       </div>
 
       <div className="grid grid-cols-3 gap-8 p-12">
-        {dummyFavorites.map((id, index) => (
+        {favoriteItems.map((item, index) => (
           <FavoriteItem
             key={index}
-            id={id}
+            id={item.id}
+            size={item.size}
             edit={edit}
             index={index}
             removeFavorite={removeFavorite}
@@ -60,10 +59,20 @@ const Favorites = () => {
 export default Favorites;
 
 // A Card component to render each favorite item
-const FavoriteItem = ({ id, edit, index, removeFavorite }) => {
+const FavoriteItem = ({ id, size, edit, index, removeFavorite }) => {
+  const productData = useFetch(`*[_id == '${id}']`)[0]?.result[0];
   const [unFavorite, setUnFavorite] = useState(false);
 
-  const productData = useFetch(`*[_id == '${id}']`)[0]?.result[0];
+  const dispatch = useDispatch();
+
+  console.log(size == undefined);
+
+  const addToBagHandler = () => {
+    if (size) {
+      console.log(size);
+      dispatch(addToCart(id, size));
+    }
+  };
 
   return (
     <div
@@ -87,7 +96,10 @@ const FavoriteItem = ({ id, edit, index, removeFavorite }) => {
         ))}
       </p>
 
-      <button className="px-5 py-2 mt-6 border border-gray-400 rounded-3xl">
+      <button
+        onClick={addToBagHandler}
+        className="px-5 py-2 mt-6 border border-gray-400 rounded-3xl"
+      >
         Add to Bag
       </button>
 

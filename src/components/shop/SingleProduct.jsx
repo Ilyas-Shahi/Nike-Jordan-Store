@@ -3,18 +3,21 @@ import { useSearchParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import useFetch from '../../hooks/useFetch';
-import SanityImage from '../layout/SanityImage';
+import { addToCart } from '../../redux-store/addToCartSlice';
+import { addToFavorites } from '../../redux-store/favoritesSlice';
+import Reviews from './Reviews';
 
+import SanityImage from '../layout/SanityImage';
 import KlarnaLogo from '../../assets/svg/klarna-logo-black.svg';
 import HeartIcon from '../../assets/svg/heart-icon.svg';
+import HeartFilledIcon from '../../assets/svg/heart-filled.svg';
 import ShippingReturns from './ShippingReturns';
-import Reviews from './Reviews';
-import { addToCart } from '../../redux store/addToCartSlice';
 
 const SingleProduct = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedSize, setSelectedSize] = useState();
   const [noSize, setNoSize] = useState(false);
+  const [favorite, setFavorite] = useState(false);
 
   const productData = useFetch(`*[_id == '${searchParams.get('id')}']`)[0]
     ?.result[0];
@@ -27,7 +30,16 @@ const SingleProduct = () => {
       return;
     }
 
-    dispatch(addToCart({ id: searchParams.get('id'), selectedSize }));
+    dispatch(addToCart({ id: searchParams.get('id'), size: selectedSize }));
+  };
+
+  const favoriteHandler = () => {
+    setFavorite(!favorite);
+    if (!favorite) {
+      dispatch(
+        addToFavorites({ id: searchParams.get('id'), size: selectedSize })
+      );
+    }
   };
 
   useEffect(() => {
@@ -107,8 +119,16 @@ const SingleProduct = () => {
           >
             Add to Bag
           </button>
-          <button className="w-full p-5 mb-12 border border-gray-300 rounded-full hover:border-gray-500">
-            Favorite <img src={HeartIcon} alt="" className="inline w-4 ml-2" />
+          <button
+            onClick={favoriteHandler}
+            className="w-full p-5 mb-12 border border-gray-300 rounded-full hover:border-gray-500"
+          >
+            Favorite{' '}
+            <img
+              src={favorite ? HeartFilledIcon : HeartIcon}
+              alt=""
+              className="inline w-4 ml-2"
+            />
           </button>
 
           <p>

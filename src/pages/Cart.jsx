@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import Bag from '../components/cart/Bag';
-import Favorites from '../components/cart/Favorites';
+import FavoritesSection from '../components/cart/FavoritesSection';
 import Summary from '../components/cart/Summary';
 
 const Cart = () => {
@@ -36,7 +36,7 @@ const Cart = () => {
         <Summary total={total} />
       </div>
 
-      <Favorites />
+      <FavoritesSection />
     </div>
   );
 };
