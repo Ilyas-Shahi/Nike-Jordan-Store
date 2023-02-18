@@ -30,7 +30,7 @@ const FavoriteItem = ({ id, size }) => {
 
   return (
     <div className="flex justify-between gap-8 pb-8 leading-relaxed">
-      <Link to={`/shop/${productData.slug.current}/?id=${id}`}>
+      <Link to={`/shop/${productData?.slug.current}/?id=${id}`}>
         <SanityImage
           imageRef={productData?.gallery.images[0].asset._ref}
           className="object-cover w-40 h-40"
@@ -38,7 +38,7 @@ const FavoriteItem = ({ id, size }) => {
       </Link>
 
       <div>
-        <Link to={`/shop/${productData.slug.current}/?id=${id}`}>
+        <Link to={`/shop/${productData?.slug.current}/?id=${id}`}>
           <h3 className="">{productData?.title}</h3>
         </Link>
 

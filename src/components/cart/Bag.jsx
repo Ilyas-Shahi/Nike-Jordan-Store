@@ -5,6 +5,7 @@ import ChevronDown from '../../assets/svg/chevron-down.svg';
 import HeartIcon from '../../assets/svg/heart-icon.svg';
 import DeleteIcon from '../../assets/svg/delete-icon.svg';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Bag = ({ id, size, getTotal, index }) => {
   const productData = useFetch(`*[_id == '${id}']`)[0]?.result[0];
@@ -16,21 +17,24 @@ const Bag = ({ id, size, getTotal, index }) => {
 
   useEffect(() => {
     setTotal(productData?.price * +quantity);
-  }, [productData?.price, quantity]);
-
-  getTotal(total, index);
+    getTotal(total, index);
+  }, [productData?.price, quantity, getTotal, total, index]);
 
   return (
     <>
       <div className="pb-6 mb-6 border-b">
         <div className="flex justify-between gap-8 pb-6 leading-relaxed border-gray-300">
-          <SanityImage
-            imageRef={productData?.gallery.images[0].asset._ref}
-            className="object-cover w-40 h-40"
-          />
+          <Link to={`/shop/${productData?.slug.current}/?id=${id}`}>
+            <SanityImage
+              imageRef={productData?.gallery.images[0].asset._ref}
+              className="object-cover w-40 h-40"
+            />
+          </Link>
 
           <div>
-            <h3 className="">{productData?.title}</h3>
+            <Link to={`/shop/${productData?.slug.current}/?id=${id}`}>
+              <h3 className="">{productData?.title}</h3>
+            </Link>
             <p className="">
               {productData?.categories.map((category, i) => (
                 <span key={i} className="font-light text-gray-500">

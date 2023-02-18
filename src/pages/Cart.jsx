@@ -27,7 +27,7 @@ const Cart = () => {
               key={index}
               index={index}
               id={item.id}
-              size={item.selectedSize}
+              size={item.size}
               getTotal={getTotal}
             />
           ))}

@@ -16,8 +16,10 @@ import ShippingReturns from './ShippingReturns';
 const SingleProduct = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedSize, setSelectedSize] = useState();
-  const [noSize, setNoSize] = useState(false);
   const [favorite, setFavorite] = useState(false);
+  const [noSize, setNoSize] = useState(
+    searchParams.get('noSize') ? true : false
+  );
 
   const productData = useFetch(`*[_id == '${searchParams.get('id')}']`)[0]
     ?.result[0];
