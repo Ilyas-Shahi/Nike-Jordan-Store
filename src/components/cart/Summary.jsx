@@ -4,7 +4,7 @@ import ChevronDown from '../../assets/svg/chevron-down.svg';
 import QuestionIcon from '../../assets/svg/question-mark.svg';
 import PayPalLogo from '../../assets/svg/paypal-logo.svg';
 
-const Summary = () => {
+const Summary = ({ total }) => {
   const [showPromo, setShowPromo] = useState(false);
 
   return (
@@ -55,7 +55,7 @@ const Summary = () => {
             <span>Subtotal</span>
             <img src={QuestionIcon} alt="" className="w-3" />
           </p>
-          <p>$175.00</p>
+          <p>${total.toFixed(2)}</p>
         </div>
 
         <div className="flex justify-between">
@@ -73,7 +73,7 @@ const Summary = () => {
 
         <div className="flex justify-between py-5 border-t border-b border-gray-300 mt-5">
           <p>Total</p>
-          <p>$175.00</p>
+          <p>${total.toFixed(2)}</p>
         </div>
 
         <button className="w-full p-5 mt-8 text-white transition-all bg-black rounded-full cursor-pointer hover:bg-gray-800">

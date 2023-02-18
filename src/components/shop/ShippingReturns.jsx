@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ChevronDown from '../../assets/svg/chevron-down.svg';
 
 const ShippingReturns = () => {
-  const [showOption, setShowOption] = useState(true);
+  const [showOption, setShowOption] = useState(false);
 
   return (
     <div className="pt-6 pb-3 border-t">

@@ -1,16 +1,27 @@
-import SanityImage from '../layout/SanityImage';
+import useFetch from '../../hooks/useFetch';
 
+import SanityImage from '../layout/SanityImage';
 import ChevronDown from '../../assets/svg/chevron-down.svg';
 import HeartIcon from '../../assets/svg/heart-icon.svg';
 import DeleteIcon from '../../assets/svg/delete-icon.svg';
+import { useEffect, useState } from 'react';
 
-const Bag = ({ productData }) => {
+const Bag = ({ id, size, getTotal, index }) => {
+  const productData = useFetch(`*[_id == '${id}']`)[0]?.result[0];
+
+  const [total, setTotal] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+    setTotal(productData?.price * +quantity);
+  }, [productData?.price, quantity]);
+
+  getTotal(total, index);
+
   return (
     <>
-      <div className="w-4/6 pb-6 border-b border-gray-300 h-max">
-        <h1 className="mb-8 text-2xl">Bag</h1>
-
-        <div className="flex justify-between gap-8 pb-6 leading-relaxed">
+      <div className="pb-6 mb-6 border-b">
+        <div className="flex justify-between gap-8 pb-6 leading-relaxed border-gray-300">
           <SanityImage
             imageRef={productData?.gallery.images[0].asset._ref}
             className="object-cover w-40 h-40"
@@ -39,7 +50,11 @@ const Bag = ({ productData }) => {
                   className="px-3 py-0 text-sm appearance-none bg-right bg-[size:12px] bg-opacity-10 bg-no-repeat opacity-70 font-light"
                 >
                   {productData?.size.map((option, i) => (
-                    <option key={i} value={option}>
+                    <option
+                      key={i}
+                      value={option}
+                      selected={size === option ? true : false}
+                    >
                       {option}
                     </option>
                   ))}
@@ -54,6 +69,7 @@ const Bag = ({ productData }) => {
                   id="size"
                   style={{ backgroundImage: `url('${ChevronDown}')` }}
                   className="px-5 py-0 text-sm appearance-none bg-right bg-[size:12px] bg-opacity-10 bg-no-repeat opacity-70 font-light"
+                  onChange={(e) => setQuantity(e.target.value)}
                 >
                   {[...Array(10)].map((v, i) => (
                     <option key={i} value={i + 1}>

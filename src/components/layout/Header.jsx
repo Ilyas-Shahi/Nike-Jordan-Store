@@ -11,6 +11,7 @@ import SearchIcon from '../../assets/svg/search-icon.svg';
 import HeartIcon from '../../assets/svg/heart-icon.svg';
 import CartIcon from '../../assets/svg/cart-icon.svg';
 import HamburgerMenuIcon from '../../assets/svg/hamburger-menu.svg';
+import AddedToCart from './AddedToCart';
 
 const Header = () => {
   const [scrollAnimation, setScrollAnimation] = useState(false);
@@ -44,7 +45,11 @@ const Header = () => {
         }`}
       >
         <Link to="/">
-          <img src={NikeLogo} alt="" className="w-16 md:w-20" />
+          <img
+            src={NikeLogo}
+            alt=""
+            className="w-16 md:w-20 md:h-16 object-cover"
+          />
         </Link>
 
         {!showBackdrop && (
@@ -88,9 +93,12 @@ const Header = () => {
             </Link>
           )}
           {!showBackdrop && (
-            <button className="flex items-center justify-center w-10 h-10 p-1 rounded-full cursor-pointer hover:bg-gray-200">
-              <img src={CartIcon} alt="" />
-            </button>
+            <Link to="/cart">
+              <button className="flex items-center justify-center w-10 h-10 p-1 rounded-full cursor-pointer hover:bg-gray-200">
+                <img src={CartIcon} alt="" />
+                <span className="absolute text-[10px] mt-1.5">2</span>
+              </button>
+            </Link>
           )}
 
           <Link to="#">
@@ -109,6 +117,8 @@ const Header = () => {
           </p>
         )}
       </div>
+
+      {/* <AddedToCart /> */}
 
       {showBackdrop && (
         <div

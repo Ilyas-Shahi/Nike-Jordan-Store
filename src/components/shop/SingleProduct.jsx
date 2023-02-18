@@ -1,3 +1,7 @@
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
 import useFetch from '../../hooks/useFetch';
 import SanityImage from '../layout/SanityImage';
 
@@ -5,13 +9,32 @@ import KlarnaLogo from '../../assets/svg/klarna-logo-black.svg';
 import HeartIcon from '../../assets/svg/heart-icon.svg';
 import ShippingReturns from './ShippingReturns';
 import Reviews from './Reviews';
-import { useLocation, useParams, useSearchParams } from 'react-router-dom';
+import { addToCart } from '../../redux store/addToCartSlice';
 
 const SingleProduct = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [selectedSize, setSelectedSize] = useState();
+  const [noSize, setNoSize] = useState(false);
 
   const productData = useFetch(`*[_id == '${searchParams.get('id')}']`)[0]
     ?.result[0];
+
+  const dispatch = useDispatch();
+
+  const addToCartHandler = () => {
+    if (!selectedSize) {
+      setNoSize(true);
+      return;
+    }
+
+    dispatch(addToCart({ id: searchParams.get('id'), selectedSize }));
+  };
+
+  useEffect(() => {
+    if (selectedSize) {
+      setNoSize(false);
+    }
+  }, [selectedSize]);
 
   return (
     <>
@@ -42,13 +65,15 @@ const SingleProduct = () => {
           <p className="mt-4 mb-10 text-lg font-light">${productData?.price}</p>
 
           <p className="flex justify-between mb-2">
-            <span>Select Size</span>
+            <span className={`${noSize && 'text-red-600'}`}>Select Size</span>
             <span>Size Guide</span>
           </p>
 
           <form
-            className="grid grid-cols-2 gap-1"
-            onChange={(e) => console.log(e.target.value)}
+            className={`grid grid-cols-2 gap-1 ${
+              noSize && 'border border-red-500 rounded-md'
+            }`}
+            onChange={(e) => setSelectedSize(e.target.value)}
           >
             {productData?.size.map((size, i) => (
               <div key={i} className="relative">
@@ -68,6 +93,7 @@ const SingleProduct = () => {
               </div>
             ))}
           </form>
+          {noSize && <p className="mt-2 text-red-600">Please select a size</p>}
 
           <p className="w-3/4 mx-auto mt-6 mb-4 text-base text-center">
             4 interest-free payments of ${(productData?.price / 4).toFixed(2)}{' '}
@@ -75,7 +101,10 @@ const SingleProduct = () => {
             <span className="underline">Learn More</span>
           </p>
 
-          <button className="w-full p-5 mb-3 text-white bg-black rounded-full hover:bg-gray-800">
+          <button
+            onClick={addToCartHandler}
+            className="w-full p-5 mb-3 text-white bg-black rounded-full hover:bg-gray-800"
+          >
             Add to Bag
           </button>
           <button className="w-full p-5 mb-12 border border-gray-300 rounded-full hover:border-gray-500">
@@ -98,7 +127,7 @@ const SingleProduct = () => {
 
           <p className="mb-5">{productData?.description}</p>
 
-          <ul className="mb-5 list-inside list-disc">
+          <ul className="mb-5 list-disc list-inside">
             {productData?.descList?.map((li, i) => (
               <li key={i}>{li}</li>
             ))}
