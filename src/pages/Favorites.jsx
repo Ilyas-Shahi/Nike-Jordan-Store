@@ -16,6 +16,8 @@ const Favorites = () => {
   const favoriteItems = useSelector((state) => state.favorites.favoriteItems);
   const [edit, setEdit] = useState(false);
 
+  console.log(favoriteItems);
+
   return (
     <>
       {favoriteItems.length > 0 ? (
@@ -33,7 +35,7 @@ const Favorites = () => {
           </button>
         </div>
       ) : (
-        <h2 className="text-xl p-12 h-screen">No Favorites</h2>
+        <h2 className="text-xl p-12 h-80">No Favorites</h2>
       )}
 
       <div className="grid grid-cols-3 gap-8 p-12">
@@ -55,9 +57,7 @@ const FavoriteItem = ({ id, size, edit }) => {
   const navigate = useNavigate();
 
   const addToBagHandler = () => {
-    console.log(size);
     if (size) {
-      console.log(size);
       dispatch(addToCart({ id, size }));
     } else {
       navigate(`/shop/${productData?.slug.current}/?id=${id}&noSize=true`);
