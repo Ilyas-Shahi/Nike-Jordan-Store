@@ -21,18 +21,23 @@ export const favoritesSlice = createSlice({
           'favoriteItems',
           JSON.stringify(state.favoriteItems.map((item) => item))
         );
+        console.log(favoriteItems);
       }
     },
 
     removeFromFavorites: (state, action) => {
+      console.log(favoriteItems);
       state.favoriteItems = state.favoriteItems.filter(
         (item) => item.id !== action.payload
       );
+
+      console.log(favoriteItems);
 
       localStorage.setItem(
         'favoriteItems',
         JSON.stringify(state.favoriteItems.map((item) => item))
       );
+      console.log(favoriteItems);
     },
   },
 });

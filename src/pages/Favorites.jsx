@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import useFetch from '../hooks/useFetch';
 import SanityImage from '../components/layout/SanityImage';
@@ -15,8 +15,6 @@ import { removeFromFavorites } from '../redux-store/favoritesSlice';
 const Favorites = () => {
   const favoriteItems = useSelector((state) => state.favorites.favoriteItems);
   const [edit, setEdit] = useState(false);
-
-  console.log(favoriteItems);
 
   return (
     <>
@@ -64,11 +62,19 @@ const FavoriteItem = ({ id, size, edit }) => {
     }
   };
 
-  useEffect(() => {
-    if (unFavorite && !edit) {
+  const removeFavoriteHandler = useCallback(() => {
+    setUnFavorite(!unFavorite);
+
+    if (!edit && unFavorite) {
       dispatch(removeFromFavorites(id));
     }
   }, [dispatch, id, unFavorite, edit]);
+
+  // useEffect(() => {
+  //   if (!edit && unFavorite) {
+  //     removeFavoriteHandler();
+  //   }
+  // }, [edit, unFavorite, removeFavoriteHandler]);
 
   return (
     <div
@@ -107,7 +113,7 @@ const FavoriteItem = ({ id, size, edit }) => {
         <img
           src={edit && unFavorite ? HeartIcon : HeartFilledIcon}
           alt=""
-          onClick={() => setUnFavorite(!unFavorite)}
+          onClick={removeFavoriteHandler}
           className="absolute p-1.5 w-10 h-10 bg-white rounded-full top-5 right-5 cursor-pointer"
         />
       )}

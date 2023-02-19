@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import useFetch from '../../hooks/useFetch';
 import { addToCart } from '../../redux-store/addToCartSlice';
-import { addToFavorites } from '../../redux-store/favoritesSlice';
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from '../../redux-store/favoritesSlice';
 import Reviews from './Reviews';
 
 import SanityImage from '../layout/SanityImage';
@@ -16,13 +19,18 @@ import ShippingReturns from './ShippingReturns';
 const SingleProduct = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedSize, setSelectedSize] = useState();
-  const [favorite, setFavorite] = useState(false);
+
   const [noSize, setNoSize] = useState(
     searchParams.get('noSize') ? true : false
   );
 
-  const productData = useFetch(`*[_id == '${searchParams.get('id')}']`)[0]
-    ?.result[0];
+  const id = searchParams.get('id');
+  const productData = useFetch(`*[_id == '${id}']`)[0]?.result[0];
+
+  const favoriteItems = useSelector((state) => state.favorites.favoriteItems);
+  const [favorite, setFavorite] = useState(
+    favoriteItems.some((item) => item.id === id)
+  );
 
   const dispatch = useDispatch();
 
@@ -32,15 +40,16 @@ const SingleProduct = () => {
       return;
     }
 
-    dispatch(addToCart({ id: searchParams.get('id'), size: selectedSize }));
+    dispatch(addToCart({ id: id, size: selectedSize }));
   };
 
   const favoriteHandler = () => {
-    setFavorite(!favorite);
-    if (!favorite) {
-      dispatch(
-        addToFavorites({ id: searchParams.get('id'), size: selectedSize })
-      );
+    if (favoriteItems.some((item) => item.id === id)) {
+      dispatch(removeFromFavorites(id));
+      setFavorite(false);
+    } else {
+      dispatch(addToFavorites({ id: id, size: selectedSize }));
+      setFavorite(true);
     }
   };
 
@@ -49,6 +58,10 @@ const SingleProduct = () => {
       setNoSize(false);
     }
   }, [selectedSize]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
