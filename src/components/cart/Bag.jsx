@@ -6,19 +6,42 @@ import HeartIcon from '../../assets/svg/heart-icon.svg';
 import DeleteIcon from '../../assets/svg/delete-icon.svg';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToFavorites } from '../../redux-store/favoritesSlice';
-import { removeFromCart } from '../../redux-store/cartSlice';
+import { removeFromCart, updateCart } from '../../redux-store/cartSlice';
 
 const Bag = ({ id, size, getTotal, index }) => {
   const productData = useFetch(`*[_id == '${id}']`)[0]?.result[0];
+  const cartItems = useSelector((state) => state.cart.cartItems);
 
   const [sizeValue, setSizeValue] = useState(size);
 
   const [total, setTotal] = useState(0);
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(
+    cartItems[index].quantity ? cartItems[index].quantity : 1
+  );
 
   const dispatch = useDispatch();
+
+  const updateSize = (e) => {
+    setSizeValue(e.target.value);
+    dispatch(
+      updateCart({
+        index,
+        updated: { id, size: e.target.value, quantity },
+      })
+    );
+  };
+
+  const updateQuantity = (e) => {
+    setQuantity(e.target.value);
+    dispatch(
+      updateCart({
+        index,
+        updated: { id, size: sizeValue, quantity: e.target.value },
+      })
+    );
+  };
 
   useEffect(() => {
     setTotal(productData?.price * +quantity);
@@ -58,7 +81,7 @@ const Bag = ({ id, size, getTotal, index }) => {
                   name="Size"
                   id="size"
                   value={sizeValue}
-                  onChange={(e) => setSizeValue(e.target.value)}
+                  onChange={updateSize}
                   style={{ backgroundImage: `url('${ChevronDown}')` }}
                   className="px-3 py-0 text-sm appearance-none bg-right bg-[size:12px] bg-opacity-10 bg-no-repeat opacity-70 font-light"
                 >
@@ -74,11 +97,12 @@ const Bag = ({ id, size, getTotal, index }) => {
                   Quantity
                 </label>
                 <select
-                  name="Size"
-                  id="size"
+                  name="Quantity"
+                  id="quantity"
                   style={{ backgroundImage: `url('${ChevronDown}')` }}
                   className="px-5 py-0 text-sm appearance-none bg-right bg-[size:12px] bg-opacity-10 bg-no-repeat opacity-70 font-light"
-                  onChange={(e) => setQuantity(e.target.value)}
+                  value={quantity}
+                  onChange={updateQuantity}
                 >
                   {[...Array(10)].map((v, i) => (
                     <option key={i} value={i + 1}>

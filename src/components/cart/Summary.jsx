@@ -5,7 +5,16 @@ import QuestionIcon from '../../assets/svg/question-mark.svg';
 import PayPalLogo from '../../assets/svg/paypal-logo.svg';
 
 const Summary = ({ total }) => {
+  const [updateTotal, setUpdateTotal] = useState(0);
   const [showPromo, setShowPromo] = useState(false);
+
+  const applyPromo = (e) => {
+    e.preventDefault();
+
+    if (e.target[0].value === 'PROMO20') {
+      setUpdateTotal(total - total * 0.2);
+    }
+  };
 
   return (
     <>
@@ -27,7 +36,7 @@ const Summary = ({ total }) => {
           </button>
 
           <form
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={applyPromo}
             className={`overflow-hidden pb-6 ${
               showPromo ? 'animate-heightEntrance' : 'hidden'
             }`}
@@ -37,6 +46,7 @@ const Summary = ({ total }) => {
                 type="text"
                 name="promo"
                 id="promo"
+                placeholder="PROMO20"
                 className="w-4/6 px-3 py-2 border border-gray-300 rounded-lg h-full"
               />
 
@@ -55,7 +65,7 @@ const Summary = ({ total }) => {
             <span>Subtotal</span>
             <img src={QuestionIcon} alt="" className="w-3" />
           </p>
-          <p>${total.toFixed(2)}</p>
+          <p>${!updateTotal ? total.toFixed(2) : updateTotal}</p>
         </div>
 
         <div className="flex justify-between">
@@ -73,7 +83,7 @@ const Summary = ({ total }) => {
 
         <div className="flex justify-between py-5 border-t border-b border-gray-300 mt-5">
           <p>Total</p>
-          <p>${total.toFixed(2)}</p>
+          <p>${!updateTotal ? total.toFixed(2) : updateTotal}</p>
         </div>
 
         <button className="w-full p-5 mt-8 text-white transition-all bg-black rounded-full cursor-pointer hover:bg-gray-800">
