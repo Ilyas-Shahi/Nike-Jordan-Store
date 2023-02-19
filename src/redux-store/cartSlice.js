@@ -11,6 +11,8 @@ function saveToLS(items) {
 
 const initialState = {
   cartItems: cartItems,
+  showCartNotification: false,
+  cartNotification: {},
 };
 
 export const cartSlice = createSlice({

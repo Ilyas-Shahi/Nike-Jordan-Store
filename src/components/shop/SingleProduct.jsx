@@ -15,6 +15,7 @@ import KlarnaLogo from '../../assets/svg/klarna-logo-black.svg';
 import HeartIcon from '../../assets/svg/heart-icon.svg';
 import HeartFilledIcon from '../../assets/svg/heart-filled.svg';
 import ShippingReturns from './ShippingReturns';
+import { showNotification } from '../../redux-store/notificationSlice';
 
 const SingleProduct = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -41,6 +42,12 @@ const SingleProduct = () => {
     }
 
     dispatch(addToCart({ id: id, size: selectedSize }));
+    dispatch(
+      showNotification({
+        type: 'Cart',
+        content: { id: id, size: selectedSize },
+      })
+    );
   };
 
   const favoriteHandler = () => {

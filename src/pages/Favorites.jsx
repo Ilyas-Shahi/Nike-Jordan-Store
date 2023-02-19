@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../redux-store/cartSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import { removeFromFavorites } from '../redux-store/favoritesSlice';
+import { showNotification } from '../redux-store/notificationSlice';
 
 const Favorites = () => {
   const favoriteItems = useSelector((state) => state.favorites.favoriteItems);
@@ -59,6 +60,7 @@ const FavoriteItem = ({ id, size, edit }) => {
   const addToBagHandler = () => {
     if (size) {
       dispatch(addToCart({ id, size }));
+      dispatch(showNotification({ type: 'Cart', content: { id, size } }));
     } else {
       navigate(`/shop/${productData?.slug.current}/?id=${id}&noSize=true`);
     }

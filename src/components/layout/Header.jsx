@@ -2,22 +2,31 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import HeaderSlider from './HeaderSlider';
+import Notification from './Notification';
 
 import NikeLogo from '../../assets/svg/nike-logo.svg';
 import SearchIcon from '../../assets/svg/search-icon.svg';
 import HeartIcon from '../../assets/svg/heart-icon.svg';
 import CartIcon from '../../assets/svg/cart-icon.svg';
 import HamburgerMenuIcon from '../../assets/svg/hamburger-menu.svg';
-import AddedToCart from './AddedToCart';
 
 const Header = () => {
   const [scrollAnimation, setScrollAnimation] = useState(false);
 
   const [showBackdrop, setShowBackdrop] = useState(false);
   const [showElement, setShowElement] = useState(false);
+
+  const cartItemsNum = useSelector((state) => state.cart.cartItems)?.length;
+
+  const showNotification = useSelector(
+    (state) => state.notification.showNotification
+  );
+
+  console.log(showNotification);
 
   setTimeout(() => {
     setShowElement(showBackdrop);
@@ -40,9 +49,9 @@ const Header = () => {
   return (
     <>
       <div
-        className={`flex items-center justify-between px-6 md:px-12 py-0 transition-all ${
+        className={`flex items-center justify-between bg-white z-50 px-6 md:px-12 py-0 transition-all ${
           scrollAnimation && 'pb-10 -mt-10'
-        }`}
+        } ${showNotification && 'sticky top-0'}`}
       >
         <Link to="/">
           <img
@@ -96,7 +105,9 @@ const Header = () => {
             <Link to="/cart">
               <button className="flex items-center justify-center w-10 h-10 p-1 rounded-full cursor-pointer hover:bg-gray-200">
                 <img src={CartIcon} alt="" />
-                <span className="absolute text-[10px] mt-1.5">2</span>
+                <span className="absolute text-[10px] mt-1">
+                  {cartItemsNum > 0 && cartItemsNum}
+                </span>
               </button>
             </Link>
           )}
@@ -118,7 +129,7 @@ const Header = () => {
         )}
       </div>
 
-      {/* <AddedToCart /> */}
+      {showNotification && <Notification />}
 
       {showBackdrop && (
         <div
