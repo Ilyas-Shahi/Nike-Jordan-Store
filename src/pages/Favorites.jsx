@@ -8,7 +8,7 @@ import SanityImage from '../components/layout/SanityImage';
 import HeartIcon from '../assets/svg/heart-icon.svg';
 import HeartFilledIcon from '../assets/svg/heart-filled.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../redux-store/addToCartSlice';
+import { addToCart } from '../redux-store/cartSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import { removeFromFavorites } from '../redux-store/favoritesSlice';
 
@@ -51,6 +51,8 @@ const FavoriteItem = ({ id, size, edit }) => {
   const productData = useFetch(`*[_id == '${id}']`)[0]?.result[0];
   const [unFavorite, setUnFavorite] = useState(false);
 
+  const [removeList, setRemoveList] = useState([]);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -62,19 +64,18 @@ const FavoriteItem = ({ id, size, edit }) => {
     }
   };
 
-  const removeFavoriteHandler = useCallback(() => {
+  const removeFavoriteHandler = () => {
     setUnFavorite(!unFavorite);
 
-    if (!edit && unFavorite) {
-      dispatch(removeFromFavorites(id));
-    }
-  }, [dispatch, id, unFavorite, edit]);
+    setRemoveList((prev) => [...prev, id]);
+    console.log(removeList);
+  };
 
-  // useEffect(() => {
-  //   if (!edit && unFavorite) {
-  //     removeFavoriteHandler();
-  //   }
-  // }, [edit, unFavorite, removeFavoriteHandler]);
+  useEffect(() => {
+    if (!edit) {
+      removeList.map((item) => dispatch(removeFromFavorites(item)));
+    }
+  }, [dispatch, edit, removeList]);
 
   return (
     <div

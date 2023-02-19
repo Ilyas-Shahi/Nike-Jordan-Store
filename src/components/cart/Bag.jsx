@@ -6,6 +6,9 @@ import HeartIcon from '../../assets/svg/heart-icon.svg';
 import DeleteIcon from '../../assets/svg/delete-icon.svg';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addToFavorites } from '../../redux-store/favoritesSlice';
+import { removeFromCart } from '../../redux-store/cartSlice';
 
 const Bag = ({ id, size, getTotal, index }) => {
   const productData = useFetch(`*[_id == '${id}']`)[0]?.result[0];
@@ -14,6 +17,8 @@ const Bag = ({ id, size, getTotal, index }) => {
 
   const [total, setTotal] = useState(0);
   const [quantity, setQuantity] = useState(1);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setTotal(productData?.price * +quantity);
@@ -85,8 +90,17 @@ const Bag = ({ id, size, getTotal, index }) => {
             </form>
 
             <div className="flex gap-4 mt-8">
-              <img src={HeartIcon} alt="" />
-              <img src={DeleteIcon} alt="" />
+              <button
+                onClick={() => {
+                  dispatch(addToFavorites({ id, size }));
+                  dispatch(removeFromCart(id));
+                }}
+              >
+                <img src={HeartIcon} alt="" />
+              </button>
+              <button onClick={() => dispatch(removeFromCart(id))}>
+                <img src={DeleteIcon} alt="" />
+              </button>
             </div>
           </div>
 

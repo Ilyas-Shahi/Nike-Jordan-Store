@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import useFetch from '../../hooks/useFetch';
-import { addToCart } from '../../redux-store/addToCartSlice';
+import { addToCart } from '../../redux-store/cartSlice';
 import {
   addToFavorites,
   removeFromFavorites,

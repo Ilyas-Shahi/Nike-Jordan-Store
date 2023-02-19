@@ -1,6 +1,8 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
+import { addToCart } from '../../redux-store/cartSlice';
+import { removeFromFavorites } from '../../redux-store/favoritesSlice';
 import SanityImage from '../layout/SanityImage';
 
 const FavoritesSection = () => {
@@ -27,6 +29,8 @@ const FavoritesSection = () => {
 
 const FavoriteItem = ({ id, size }) => {
   const productData = useFetch(`*[_id == '${id}']`)[0]?.result[0];
+
+  const dispatch = useDispatch();
 
   return (
     <div className="flex justify-between gap-8 pb-8 leading-relaxed">
@@ -61,7 +65,13 @@ const FavoriteItem = ({ id, size }) => {
           </p>
         )}
 
-        <button className="px-5 py-2 mt-6 border border-gray-400 rounded-3xl">
+        <button
+          className="px-5 py-2 mt-6 border border-gray-400 rounded-3xl"
+          onClick={() => {
+            dispatch(addToCart({ id, size }));
+            dispatch(removeFromFavorites(id));
+          }}
+        >
           Add to Bag
         </button>
       </div>

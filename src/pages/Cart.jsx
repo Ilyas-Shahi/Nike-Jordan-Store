@@ -6,7 +6,7 @@ import FavoritesSection from '../components/cart/FavoritesSection';
 import Summary from '../components/cart/Summary';
 
 const Cart = () => {
-  const cartItems = useSelector((state) => state.addToCart.cartItems);
+  const cartItems = useSelector((state) => state.cart.cartItems);
 
   const [total, setTotal] = useState(0);
   const bagTotals = [];
@@ -22,15 +22,19 @@ const Cart = () => {
         <div className="w-4/6 pb-6 h-max">
           <h1 className="mb-8 text-2xl">Bag</h1>
 
-          {cartItems.map((item, index) => (
-            <Bag
-              key={index}
-              index={index}
-              id={item.id}
-              size={item.size}
-              getTotal={getTotal}
-            />
-          ))}
+          {cartItems.length > 0 ? (
+            cartItems.map((item, index) => (
+              <Bag
+                key={index}
+                index={index}
+                id={item.id}
+                size={item.size}
+                getTotal={getTotal}
+              />
+            ))
+          ) : (
+            <p>There are no items in your bag.</p>
+          )}
         </div>
 
         <Summary total={total} />
