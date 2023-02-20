@@ -20,8 +20,9 @@ const Shop = () => {
   const priceFilter = useSelector((state) => state.filters.priceFilter);
   const kidsFilter = useSelector((state) => state.filters.kidsFilter);
   const colorFilter = useSelector((state) => state.filters.colorFilter);
+  const searchFilter = useSelector((state) => state.filters.searchFilter);
 
-  let query = `*[_type == 'product'${genderFilter}${priceFilter}${kidsFilter}${colorFilter}]${sortByQuery}`;
+  let query = `*[_type == 'product'${genderFilter}${priceFilter}${kidsFilter}${colorFilter}${searchFilter}]${sortByQuery}`;
 
   const fixSidebar = useScrollTrigger(150);
 
@@ -53,10 +54,10 @@ const Shop = () => {
         handleSort={handleSort}
       />
 
-      <div className="flex px-12">
+      <div className="flex px-12 gap-4">
         <div
           className={`relative flex-auto transition-all duration-300  ${
-            showFilters ? 'w-[16%]' : 'w-0'
+            showFilters ? 'w-[15%]' : 'w-0'
           } `}
         >
           <div
@@ -70,7 +71,7 @@ const Shop = () => {
 
         <div
           className={`flex-auto transition-all duration-300 ${
-            showFilters ? 'w-[84%] ml-10' : 'w-full ml-0'
+            showFilters ? 'w-[85%] ml-10' : 'w-full ml-0'
           }`}
         >
           <ProductsGrid query={query} />

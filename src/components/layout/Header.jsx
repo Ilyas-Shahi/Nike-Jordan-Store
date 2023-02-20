@@ -2,8 +2,8 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
 import HeaderSlider from './HeaderSlider';
 import Notification from './Notification';
@@ -13,6 +13,7 @@ import SearchIcon from '../../assets/svg/search-icon.svg';
 import HeartIcon from '../../assets/svg/heart-icon.svg';
 import CartIcon from '../../assets/svg/cart-icon.svg';
 import HamburgerMenuIcon from '../../assets/svg/hamburger-menu.svg';
+import { setSearchFilter } from '../../redux-store/filtersSlice';
 
 const Header = () => {
   const [scrollAnimation, setScrollAnimation] = useState(false);
@@ -26,7 +27,20 @@ const Header = () => {
     (state) => state.notification.showNotification
   );
 
-  console.log(showNotification);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const searchHandler = (e) => {
+    e.preventDefault();
+
+    if (e.target[1].value) {
+      console.log(e.target[1].value);
+      navigate('/shop');
+
+      dispatch(setSearchFilter(e.target[1].value));
+      setShowBackdrop(false);
+    }
+  };
 
   setTimeout(() => {
     setShowElement(showBackdrop);
@@ -73,18 +87,21 @@ const Header = () => {
           </ul>
         )}
 
-        <div className="relative flex gap-4 transition-all w-max">
-          <div
+        <div className="relative flex gap-4 transition-all w-max justify-end">
+          <form
+            onSubmit={searchHandler}
             className={`flex h-10 transition-all duration-500 ${
               showBackdrop ? 'w-[44vw]' : 'w-48'
             }`}
           >
-            <img
-              src={SearchIcon}
-              alt=""
-              onClick={() => setShowBackdrop(!showBackdrop)}
-              className="h-full absolute top-0 left-0 p-1.5 rounded-full cursor-pointer hover:bg-gray-300 "
-            />
+            <button type="submit">
+              <img
+                src={SearchIcon}
+                alt=""
+                onClick={() => setShowBackdrop(!showBackdrop)}
+                className="h-full absolute top-0 left-0 p-1.5 rounded-full cursor-pointer hover:bg-gray-300 "
+              />
+            </button>
 
             <input
               type="text"
@@ -92,7 +109,7 @@ const Header = () => {
               onFocus={() => setShowBackdrop(true)}
               className="w-full pl-12 text-base font-thin bg-gray-100 rounded-full focus:outline-none hover:bg-gray-200 placeholder:text-gray-300 hover:placeholder:text-gray-500"
             />
-          </div>
+          </form>
 
           {!showBackdrop && (
             <Link to="/favorites">
@@ -112,7 +129,7 @@ const Header = () => {
             </Link>
           )}
 
-          <Link to="#">
+          <Link to="#" className="md:hidden">
             <button className="flex items-center justify-center w-10 h-10 px-1 py-2 rounded-full cursor-pointer md:hidden hover:bg-gray-200">
               <img src={HamburgerMenuIcon} alt="" />
             </button>
@@ -139,10 +156,10 @@ const Header = () => {
             <p className="mb-4 text-lg font-thin text-gray-500">
               Popular Search Terms
             </p>
-            <p className="mb-2 text-xl">Air Force 1</p>
-            <p className="mb-2 text-xl">Jordan</p>
-            <p className="mb-2 text-xl">Air Max</p>
-            <p className="mb-2 text-xl">Blazer</p>
+            <p className="mb-2 text-xl">Air Jordan 1</p>
+            <p className="mb-2 text-xl">Jordan 5</p>
+            <p className="mb-2 text-xl">Air Jordan XXXVII</p>
+            <p className="mb-2 text-xl">Air Jordan 5 Retro</p>
           </div>
         </div>
       )}

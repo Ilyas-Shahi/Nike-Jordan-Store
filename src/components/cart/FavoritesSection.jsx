@@ -13,9 +13,11 @@ const FavoritesSection = () => {
       <h1 className="my-8 text-2xl">Favorites</h1>
 
       <div className="grid grid-cols-2 gap-4 mb-8 border-b">
-        {favoriteItems.map((item, index) => (
-          <FavoriteItem key={index} id={item.id} size={item.size} />
-        ))}
+        {favoriteItems.map((item, index) => {
+          if (index < 2) {
+            return <FavoriteItem key={index} id={item.id} size={item.size} />;
+          }
+        })}
       </div>
 
       <Link to="/favorites">

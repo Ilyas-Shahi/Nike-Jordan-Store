@@ -63,14 +63,20 @@ const Bag = ({ id, size, getTotal, index }) => {
             <Link to={`/shop/${productData?.slug.current}/?id=${id}`}>
               <h3 className="">{productData?.title}</h3>
             </Link>
-            <p className="">
+            <p>
               {productData?.categories.map((category, i) => (
                 <span key={i} className="font-light text-gray-500">
                   {category}{' '}
                 </span>
               ))}
             </p>
-            <p className="font-light text-gray-500">White/Siren Red/Black</p>
+            <p>
+              {productData?.color.map((color, i) => (
+                <span key={i} className="font-light text-gray-500">
+                  {color.charAt(0).toUpperCase() + color.slice(1)}{' '}
+                </span>
+              ))}
+            </p>
 
             <form className="flex gap-4">
               <div className="flex">
@@ -117,6 +123,7 @@ const Bag = ({ id, size, getTotal, index }) => {
               <button
                 onClick={() => {
                   dispatch(addToFavorites({ id, size }));
+
                   dispatch(removeFromCart(id));
                 }}
               >

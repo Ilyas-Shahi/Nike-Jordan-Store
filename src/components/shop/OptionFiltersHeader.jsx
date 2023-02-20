@@ -69,7 +69,7 @@ const OptionFiltersHeader = ({ handleShowFilters, handleSort }) => {
             Jordan Shoes & Sneakers ({numOfShownProducts})
           </h2>
         </div>
-        <div className="relative flex gap-8">
+        <div className="relative flex gap-8 mt-7">
           <button
             onClick={() => setShowFilters(!showFilters)}
             className="flex gap-3"

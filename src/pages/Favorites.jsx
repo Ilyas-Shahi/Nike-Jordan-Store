@@ -70,7 +70,6 @@ const FavoriteItem = ({ id, size, edit }) => {
     setUnFavorite(!unFavorite);
 
     setRemoveList((prev) => [...prev, id]);
-    console.log(removeList);
   };
 
   useEffect(() => {

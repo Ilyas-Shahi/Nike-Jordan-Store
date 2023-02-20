@@ -16,7 +16,7 @@ const ProductsGrid = ({ query }) => {
   }, [dispatch, products]);
 
   return (
-    <div className="grid grid-cols-3 gap-3">
+    <div className="grid grid-cols-3 gap-4">
       {products[0]?.result.map((product, index) => {
         if (index < 24) {
           return (
@@ -24,18 +24,22 @@ const ProductsGrid = ({ query }) => {
               <Link to={`/shop/${product.slug.current}/?id=${product._id}`}>
                 <SanityImage
                   imageRef={product.gallery.images[0].asset._ref}
-                  className="object-cover w-full transition-all h-2/3"
+                  className="object-cover w-full mb-3 transition-all h-2/3"
                 />
                 <span className="font-thin text-amber-800">
                   {product.specialty}
                 </span>
-                <h3 className="text-base">{product.title}</h3>
-                <p className="text-sm text-gray-600">
+                <h3>{product.title}</h3>
+                <p className="text-gray-400">
                   {product.categories.map((category, index) => (
                     <span key={index}>{category} </span>
                   ))}
                 </p>
-                <p className="text-base">${product.price}</p>
+                <p className="text-gray-400">
+                  {product.color.length}{' '}
+                  {product.color.length > 1 ? 'Colors' : 'Color'}
+                </p>
+                <p className="text-[17px] mt-4">${product.price}</p>
               </Link>
             </div>
           );

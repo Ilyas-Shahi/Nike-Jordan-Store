@@ -6,6 +6,7 @@ const initialState = {
   priceFilter: '',
   kidsFilter: '',
   colorFilter: '',
+  searchFilter: '',
 };
 
 export const filtersSlice = createSlice({
@@ -47,6 +48,12 @@ export const filtersSlice = createSlice({
           ? ` && count((color[])[@ in [${action.payload.join(', ')}]]) > 0`
           : '';
     },
+
+    setSearchFilter: (state, action) => {
+      state.searchFilter = ` && title match "${action.payload}"`;
+
+      console.log(state.searchFilter);
+    },
   },
 });
 
@@ -56,6 +63,7 @@ export const {
   setGenderFilter,
   setKidsFilter,
   setColorFilter,
+  setSearchFilter,
 } = filtersSlice.actions;
 
 export default filtersSlice.reducer;

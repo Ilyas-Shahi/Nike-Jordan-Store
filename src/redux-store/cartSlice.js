@@ -34,10 +34,7 @@ export const cartSlice = createSlice({
     },
 
     updateCart: (state, action) => {
-      console.log(action.payload);
-      console.log(cartItems);
       state.cartItems[action.payload.index] = action.payload.updated;
-      console.log(cartItems);
 
       saveToLS(state.cartItems);
     },

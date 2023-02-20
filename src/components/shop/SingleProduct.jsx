@@ -56,6 +56,12 @@ const SingleProduct = () => {
       setFavorite(false);
     } else {
       dispatch(addToFavorites({ id: id, size: selectedSize }));
+      dispatch(
+        showNotification({
+          type: 'Favorites',
+          content: { id: id, size: selectedSize },
+        })
+      );
       setFavorite(true);
     }
   };

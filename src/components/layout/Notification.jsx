@@ -20,11 +20,9 @@ const Notification = () => {
 
   const dispatch = useDispatch();
 
-  // setTimeout(() => {
-  //   dispatch(closeNotification());
-  // }, 6000);
-
-  console.log(notificationContent);
+  setTimeout(() => {
+    dispatch(closeNotification());
+  }, 6000);
 
   return (
     <div className="fixed z-50 w-full h-full">
@@ -38,7 +36,7 @@ const Notification = () => {
               alt=""
               className="inline-block w-3 h-3 mb-1 mr-2 bg-green-600 rounded-full"
             />
-            Added to {notificationType == 'Cart' && 'Bag'}
+            Added to {notificationType}
           </p>
           <button onClick={() => dispatch(closeNotification())}>
             <img src={CrossIcon} alt="" className="w-5 h-5" />
@@ -82,7 +80,7 @@ const Notification = () => {
           </div>
         )}
 
-        {notificationType == 'Favorite' && (
+        {notificationType == 'Favorites' && (
           <div className="flex gap-4 mt-6">
             <Link to="/favorites" className="w-full">
               <button className="w-full p-4 text-white bg-black border border-black rounded-full hover:bg-opacity-70">
