@@ -50,9 +50,9 @@ export const filtersSlice = createSlice({
     },
 
     setSearchFilter: (state, action) => {
-      state.searchFilter = ` && title match "${action.payload}"`;
-
-      console.log(state.searchFilter);
+      state.searchFilter = action.payload
+        ? ` && title match "${action.payload}"`
+        : '';
     },
   },
 });

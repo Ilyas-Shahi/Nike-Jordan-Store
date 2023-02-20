@@ -21,6 +21,8 @@ const Header = () => {
   const [showBackdrop, setShowBackdrop] = useState(false);
   const [showElement, setShowElement] = useState(false);
 
+  const [searchInputValue, setSearchInputValue] = useState('');
+
   const cartItemsNum = useSelector((state) => state.cart.cartItems)?.length;
 
   const showNotification = useSelector(
@@ -30,16 +32,10 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const searchHandler = (e) => {
-    e.preventDefault();
-
-    if (e.target[1].value) {
-      console.log(e.target[1].value);
-      navigate('/shop');
-
-      dispatch(setSearchFilter(e.target[1].value));
-      setShowBackdrop(false);
-    }
+  const searchHandler = () => {
+    dispatch(setSearchFilter(searchInputValue));
+    navigate('/shop');
+    setShowBackdrop(false);
   };
 
   setTimeout(() => {
@@ -89,7 +85,10 @@ const Header = () => {
 
         <div className="relative flex gap-4 transition-all w-max justify-end">
           <form
-            onSubmit={searchHandler}
+            onSubmit={(e) => {
+              e.preventDefault();
+              searchHandler();
+            }}
             className={`flex h-10 transition-all duration-500 ${
               showBackdrop ? 'w-[44vw]' : 'w-48'
             }`}
@@ -106,7 +105,9 @@ const Header = () => {
             <input
               type="text"
               placeholder="Search"
+              value={searchInputValue}
               onFocus={() => setShowBackdrop(true)}
+              onChange={(e) => setSearchInputValue(e.target.value)}
               className="w-full pl-12 text-base font-thin bg-gray-100 rounded-full focus:outline-none hover:bg-gray-200 placeholder:text-gray-300 hover:placeholder:text-gray-500"
             />
           </form>
@@ -156,10 +157,30 @@ const Header = () => {
             <p className="mb-4 text-lg font-thin text-gray-500">
               Popular Search Terms
             </p>
-            <p className="mb-2 text-xl">Air Jordan 1</p>
-            <p className="mb-2 text-xl">Jordan 5</p>
-            <p className="mb-2 text-xl">Air Jordan XXXVII</p>
-            <p className="mb-2 text-xl">Air Jordan 5 Retro</p>
+            <p
+              className="mb-2 text-xl cursor-pointer"
+              onClick={() => setSearchInputValue('Air Jordan 1')}
+            >
+              Air Jordan 1
+            </p>
+            <p
+              className="mb-2 text-xl cursor-pointer"
+              onClick={() => setSearchInputValue('Jordan 3')}
+            >
+              Jordan 3
+            </p>
+            <p
+              className="mb-2 text-xl cursor-pointer"
+              onClick={() => setSearchInputValue('Air Jordan XXXVII')}
+            >
+              Air Jordan XXXVII
+            </p>
+            <p
+              className="mb-2 text-xl cursor-pointer"
+              onClick={() => setSearchInputValue('Air Jordan 5 Retro')}
+            >
+              Air Jordan 5 Retro
+            </p>
           </div>
         </div>
       )}
