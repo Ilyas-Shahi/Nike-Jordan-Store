@@ -14,9 +14,11 @@ import HeartIcon from '../../assets/svg/heart-icon.svg';
 import CartIcon from '../../assets/svg/cart-icon.svg';
 import HamburgerMenuIcon from '../../assets/svg/hamburger-menu.svg';
 import { setSearchFilter } from '../../redux-store/filtersSlice';
+import MobileMenu from './MobileMenu';
 
 const Header = () => {
   const [scrollAnimation, setScrollAnimation] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   const [showBackdrop, setShowBackdrop] = useState(false);
   const [showElement, setShowElement] = useState(false);
@@ -58,10 +60,18 @@ const Header = () => {
 
   return (
     <>
+      {showMobileMenu && (
+        <MobileMenu
+          showMobileMenu={showMobileMenu}
+          setShowMobileMenu={setShowMobileMenu}
+        />
+      )}
       <div
-        className={`flex items-center justify-between bg-white z-50 px-6 md:px-12 py-0 transition-all ${
+        className={`flex items-center justify-between bg-white z-50 px-4 md:px-12 py-0 transition-all ${
           scrollAnimation && 'pb-10 -mt-10'
-        } ${showNotification && 'sticky top-0'}`}
+        } ${showNotification && 'sticky top-0'} ${
+          showMobileMenu && 'overflow-hidden'
+        }`}
       >
         <Link to="/">
           <img
@@ -130,11 +140,12 @@ const Header = () => {
             </Link>
           )}
 
-          <Link to="#" className="md:hidden">
-            <button className="flex items-center justify-center w-10 h-10 px-1 py-2 rounded-full cursor-pointer md:hidden hover:bg-gray-200">
-              <img src={HamburgerMenuIcon} alt="" />
-            </button>
-          </Link>
+          <button
+            onClick={() => setShowMobileMenu(true)}
+            className="flex items-center justify-center w-10 h-10 px-1 py-2 rounded-full cursor-pointer md:hidden hover:bg-gray-200"
+          >
+            <img src={HamburgerMenuIcon} alt="" />
+          </button>
         </div>
 
         {showBackdrop && showElement && (
