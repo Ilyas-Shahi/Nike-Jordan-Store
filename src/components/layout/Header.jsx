@@ -67,7 +67,7 @@ const Header = () => {
         />
       )}
       <div
-        className={`flex items-center justify-between bg-white z-50 px-4 md:px-12 py-0 transition-all ${
+        className={`flex items-center justify-between bg-white z-50 px-4 md:px-12 py-2 transition-all ${
           scrollAnimation && 'pb-10 -mt-10'
         } ${showNotification && 'sticky top-0'} ${
           showMobileMenu && 'overflow-hidden'
@@ -77,7 +77,9 @@ const Header = () => {
           <img
             src={NikeLogo}
             alt=""
-            className="object-cover w-16 md:w-20 md:h-16 hover:opacity-70"
+            className={`object-cover w-16 md:w-20 h-12 md:h-14 hover:opacity-70 ${
+              showBackdrop && 'hidden md:block'
+            }`}
           />
         </Link>
 
@@ -93,14 +95,14 @@ const Header = () => {
           </ul>
         )}
 
-        <div className="relative flex justify-end gap-4 transition-all w-max">
+        <div className="relative flex justify-end gap-4 transition-all w-full md:w-max">
           <form
             onSubmit={(e) => {
               e.preventDefault();
               searchHandler();
             }}
             className={`flex h-10 transition-all duration-500 ${
-              showBackdrop ? 'w-[44vw]' : 'w-48'
+              showBackdrop ? 'w-full md:w-[44vw]' : 'w-0 hidden md:flex md:w-48'
             }`}
           >
             <button type={showBackdrop ? 'button' : 'submit'}>
@@ -141,16 +143,27 @@ const Header = () => {
           )}
 
           <button
-            onClick={() => setShowMobileMenu(true)}
-            className="flex items-center justify-center w-10 h-10 px-1 py-2 rounded-full cursor-pointer md:hidden hover:bg-gray-200"
+            onClick={() => setShowBackdrop(!showBackdrop)}
+            className={`flex md:hidden items-center justify-center w-10 h-10 p-1 rounded-full cursor-pointer hover:bg-gray-200 ${
+              showBackdrop && 'hidden'
+            }`}
           >
-            <img src={HamburgerMenuIcon} alt="" />
+            <img src={SearchIcon} alt="" />
           </button>
+
+          {!showBackdrop && (
+            <button
+              onClick={() => setShowMobileMenu(true)}
+              className="flex items-center justify-center w-10 h-10 px-1 py-2 rounded-full cursor-pointer md:hidden hover:bg-gray-200"
+            >
+              <img src={HamburgerMenuIcon} alt="" />
+            </button>
+          )}
         </div>
 
         {showBackdrop && showElement && (
           <p
-            className="transition-all cursor-pointer"
+            className="transition-all cursor-pointer ml-6 md:ml-0"
             onClick={() => setShowBackdrop(false)}
           >
             Cancel
@@ -164,7 +177,7 @@ const Header = () => {
         <div
           className={`fixed bg-white w-full z-50 ${scrollAnimation && 'top-0'}`}
         >
-          <div className="w-[40vw] mx-auto py-12">
+          <div className="w-full md:w-[44vw] mx-auto p-12">
             <p className="mb-4 text-lg font-thin text-gray-500">
               Popular Search Terms
             </p>
