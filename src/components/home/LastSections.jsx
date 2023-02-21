@@ -13,12 +13,12 @@ import JordanElevatedImg from '../../assets/jordan-elevated.jpg';
 const LastSections = () => {
   return (
     <>
-      <div className="p-12 w-full">
+      <div className="p-6 md:p-12 w-full">
         <h3 className="mb-6 text-2xl font-extrabold">
           JORDAN GEAR FOR THE ENTIRE FAM
         </h3>
 
-        <div className="flex gap-3 w-full">
+        <div className="flex gap-3 w-full whitespace-nowrap overflow-x-scroll">
           <Link to="shop">
             <div className="w-full">
               <img src={JordanMenImg} alt="" className="w-full" />

@@ -67,7 +67,7 @@ const Header = () => {
           <img
             src={NikeLogo}
             alt=""
-            className="w-16 md:w-20 md:h-16 object-cover"
+            className="object-cover w-16 md:w-20 md:h-16 hover:opacity-70"
           />
         </Link>
 
@@ -83,7 +83,7 @@ const Header = () => {
           </ul>
         )}
 
-        <div className="relative flex gap-4 transition-all w-max justify-end">
+        <div className="relative flex justify-end gap-4 transition-all w-max">
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -93,7 +93,7 @@ const Header = () => {
               showBackdrop ? 'w-[44vw]' : 'w-48'
             }`}
           >
-            <button type="submit">
+            <button type={showBackdrop ? 'button' : 'submit'}>
               <img
                 src={SearchIcon}
                 alt=""

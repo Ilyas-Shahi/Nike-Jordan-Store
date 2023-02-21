@@ -53,7 +53,7 @@ const Footer = () => {
   return (
     <>
       {pathname === '/' && (
-        <div className="flex justify-center gap-20 m-12 mx-auto w-max group">
+        <div className="flex justify-center gap-20 m-12 group">
           <ul className="text-gray-400 flex flex-col gap-1.5 h-40 overflow-hidden group-hover:h-96 transition-all duration-500">
             <li className="mb-4 text-black">Jordan Shoes</li>
             {jordanShoesList.map((item, index) => (
@@ -126,11 +126,11 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="flex w-full gap-3 justify-end items-start">
-            <img src={TwitterIcon} alt="" className="w-9 cursor-pointer" />
-            <img src={FacebookIcon} alt="" className="w-9 cursor-pointer" />
-            <img src={YoutubeIcon} alt="" className="w-9 cursor-pointer" />
-            <img src={InstaIcon} alt="" className="w-9 cursor-pointer" />
+          <div className="flex items-start justify-end w-full gap-3">
+            <img src={TwitterIcon} alt="" className="cursor-pointer w-9" />
+            <img src={FacebookIcon} alt="" className="cursor-pointer w-9" />
+            <img src={YoutubeIcon} alt="" className="cursor-pointer w-9" />
+            <img src={InstaIcon} alt="" className="cursor-pointer w-9" />
           </div>
         </div>
 

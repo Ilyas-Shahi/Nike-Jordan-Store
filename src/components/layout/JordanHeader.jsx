@@ -23,7 +23,7 @@ const JordanHeader = () => {
       <div className={`${scrollAnimation && 'h-48'}`}></div>
 
       <div
-        className={`transition-all z-40 bg-white flex items-center w-full px-12 ${
+        className={`transition-all z-40 bg-white flex items-center w-full px-6 md:px-12 ${
           scrollAnimation
             ? 'fixed top-0 justify-between py-3'
             : 'flex-col justify-center pt-10'
@@ -35,7 +35,7 @@ const JordanHeader = () => {
           className={`${scrollAnimation ? 'w-10 m-0' : 'w-28 mb-10'}`}
         />
 
-        <ul className="flex gap-6">
+        <ul className="flex gap-6 md:w-auto whitespace-nowrap w-full overflow-x-scroll scroll scrollbar-hidden">
           <li className="text-base cursor-pointer hover:text-gray-500">
             New Releases
           </li>
