@@ -17,7 +17,7 @@ import './custom-swiper-styles.css';
 const PopularSection = () => {
   const swiperRef = useRef();
 
-  const products = useFetch(`*[_type == 'product'] | order(_createdAt asc)`);
+  const products = useFetch(`*[_type == 'product'] | order(price desc)`);
 
   return (
     <>

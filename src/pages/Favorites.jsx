@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import useFetch from '../hooks/useFetch';
 import SanityImage from '../components/layout/SanityImage';
@@ -20,7 +20,7 @@ const Favorites = () => {
   return (
     <>
       {favoriteItems.length > 0 ? (
-        <div className="flex justify-between p-12">
+        <div className="flex justify-between items-center p-6 md:px-12">
           <h2 className="text-xl">
             {edit ? 'Manage Your Favorites' : 'Favorites'}
           </h2>
@@ -34,10 +34,10 @@ const Favorites = () => {
           </button>
         </div>
       ) : (
-        <h2 className="text-xl p-12 h-80">No Favorites</h2>
+        <h2 className="p-12 text-xl h-80">No Favorites</h2>
       )}
 
-      <div className="grid grid-cols-3 gap-8 p-12">
+      <div className="grid grid-cols-2 gap-4 p-3 md:gap-8 md:grid-cols-3 md:p-12">
         {favoriteItems.map((item, index) => (
           <FavoriteItem key={index} id={item.id} size={item.size} edit={edit} />
         ))}
@@ -85,30 +85,38 @@ const FavoriteItem = ({ id, size, edit }) => {
       <Link to={`/shop/${productData?.slug.current}/?id=${id}`}>
         <SanityImage
           imageRef={productData?.gallery.images[0].asset._ref}
-          className="object-cover w-full h-[31vw] pb-4"
+          className="object-cover w-full h-[50vw] md:h-[31vw] pb-4"
         />
       </Link>
 
       <div className="flex justify-between">
         <Link to={`/shop/${productData?.slug.current}/?id=${id}`}>
-          <h3 className="">{productData?.title}</h3>
+          <h3 className="text-sm md:text-base">{productData?.title}</h3>
         </Link>
-        <p className="ml-auto">${productData?.price.toFixed(2)}</p>
+        <p className="hidden ml-auto md:block">
+          ${productData?.price.toFixed(2)}
+        </p>
       </div>
 
       <p className="">
         {productData?.categories.map((category, i) => (
-          <span key={i} className="font-light text-gray-500">
+          <span
+            key={i}
+            className="text-sm font-light text-gray-500 md:text-base"
+          >
             {category}{' '}
           </span>
         ))}
+      </p>
+      <p className="block ml-auto md:hidden">
+        ${productData?.price.toFixed(2)}
       </p>
 
       <button
         onClick={addToBagHandler}
         className="px-5 py-2 mt-6 border border-gray-400 rounded-3xl"
       >
-        Add to Bag
+        {size ? 'Add to Bag' : 'Select Size'}
       </button>
 
       {edit && (
@@ -116,7 +124,7 @@ const FavoriteItem = ({ id, size, edit }) => {
           src={edit && unFavorite ? HeartIcon : HeartFilledIcon}
           alt=""
           onClick={removeFavoriteHandler}
-          className="absolute p-1.5 w-10 h-10 bg-white rounded-full top-5 right-5 cursor-pointer"
+          className="absolute p-1.5 w-8 md:w-10 h-8 md:h-10 bg-white rounded-full top-3 md:top-5 right-3 md:right-5 cursor-pointer"
         />
       )}
     </div>

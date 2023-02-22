@@ -17,10 +17,17 @@ const Cart = () => {
   };
 
   return (
-    <div className="max-w-[1180px]  p-12 mx-auto">
-      <div className="flex gap-6">
-        <div className="w-4/6 pb-6 h-max">
-          <h1 className="mb-8 text-2xl">Bag</h1>
+    <div className="max-w-[1180px] p-4 md:p-12 mx-auto">
+      <div className="gap-6 md:flex">
+        <div className="w-full py-6 md:w-4/6 h-max">
+          <h1 className="text-xl text-center md:mb-8 md:text-left md:text-2xl">
+            Bag
+          </h1>
+          <div className="flex items-center justify-center pb-10 mb-6 border-b md:hidden">
+            <p className="text-gray-500 ">{cartItems.length} Items</p>
+            <div className="w-px h-4 mx-2 bg-gray-400"></div>
+            <p className="">${total.toFixed(2)}</p>
+          </div>
 
           {cartItems.length > 0 ? (
             cartItems.map((item, index) => (

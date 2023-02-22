@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import HeaderSlider from './HeaderSlider';
 import Notification from './Notification';
@@ -24,6 +24,8 @@ const Header = () => {
   const [showElement, setShowElement] = useState(false);
 
   const [searchInputValue, setSearchInputValue] = useState('');
+
+  const { pathname } = useLocation();
 
   const cartItemsNum = useSelector((state) => state.cart.cartItems)?.length;
 
@@ -209,7 +211,7 @@ const Header = () => {
         </div>
       )}
 
-      <HeaderSlider />
+      {pathname !== '/cart' && pathname !== '/favorites' && <HeaderSlider />}
 
       {showBackdrop && (
         <div

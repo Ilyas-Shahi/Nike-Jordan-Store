@@ -18,8 +18,8 @@ const Summary = ({ total }) => {
 
   return (
     <>
-      <div className="w-2/6 leading-loose">
-        <h1 className="mb-8 text-2xl">Summary</h1>
+      <div className="w-full md:w-2/6 leading-loose">
+        <h1 className="mb-8 text-xl md:text-2xl">Summary</h1>
 
         <div className="">
           <button

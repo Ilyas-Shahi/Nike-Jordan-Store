@@ -51,36 +51,45 @@ const Bag = ({ id, size, getTotal, index }) => {
   return (
     <>
       <div className="pb-6 mb-6 border-b">
-        <div className="flex justify-between gap-8 pb-6 leading-relaxed border-gray-300">
+        <div className="flex justify-between gap-3 pb-6  md:leading-relaxed border-gray-300 md:gap-8">
           <Link to={`/shop/${productData?.slug.current}/?id=${id}`}>
             <SanityImage
               imageRef={productData?.gallery.images[0].asset._ref}
-              className="object-cover w-40 h-40"
+              className="object-cover w-24 h-24 md:w-40 md:h-40"
             />
           </Link>
 
           <div>
             <Link to={`/shop/${productData?.slug.current}/?id=${id}`}>
-              <h3 className="">{productData?.title}</h3>
+              <h3 className="text-sm md:text-base">{productData?.title}</h3>
             </Link>
             <p>
               {productData?.categories.map((category, i) => (
-                <span key={i} className="font-light text-gray-500">
+                <span
+                  key={i}
+                  className="text-sm font-light text-gray-500 md:text-base"
+                >
                   {category}{' '}
                 </span>
               ))}
             </p>
             <p>
               {productData?.color.map((color, i) => (
-                <span key={i} className="font-light text-gray-500">
+                <span
+                  key={i}
+                  className="text-sm font-light text-gray-500 md:text-base"
+                >
                   {color.charAt(0).toUpperCase() + color.slice(1)}{' '}
                 </span>
               ))}
             </p>
 
-            <form className="flex gap-4">
+            <form className="flex gap-1 md:gap-4">
               <div className="flex">
-                <label htmlFor="size" className="font-light text-gray-500">
+                <label
+                  htmlFor="size"
+                  className="text-sm font-light text-gray-500 md:text-base"
+                >
                   Size
                 </label>
                 <select
@@ -89,7 +98,7 @@ const Bag = ({ id, size, getTotal, index }) => {
                   value={sizeValue}
                   onChange={updateSize}
                   style={{ backgroundImage: `url('${ChevronDown}')` }}
-                  className="px-3 py-0 text-sm appearance-none bg-right bg-[size:12px] bg-opacity-10 bg-no-repeat opacity-70 font-light"
+                  className="px-2 md:px-3 py-0 text-sm appearance-none bg-right bg-[size:12px] bg-white bg-opacity-10 bg-no-repeat opacity-70 font-light"
                 >
                   {productData?.size.map((option, i) => (
                     <option key={i} value={option}>
@@ -99,14 +108,17 @@ const Bag = ({ id, size, getTotal, index }) => {
                 </select>
               </div>
               <div className="flex">
-                <label htmlFor="size" className="font-light text-gray-500">
+                <label
+                  htmlFor="size"
+                  className="text-sm font-light text-gray-500 md:text-base"
+                >
                   Quantity
                 </label>
                 <select
                   name="Quantity"
                   id="quantity"
                   style={{ backgroundImage: `url('${ChevronDown}')` }}
-                  className="px-5 py-0 text-sm appearance-none bg-right bg-[size:12px] bg-opacity-10 bg-no-repeat opacity-70 font-light"
+                  className="px-2 bg-white md:px-5 py-0 text-sm appearance-none bg-right bg-[size:12px] bg-opacity-10 bg-no-repeat opacity-70 font-light"
                   value={quantity}
                   onChange={updateQuantity}
                 >
@@ -119,7 +131,7 @@ const Bag = ({ id, size, getTotal, index }) => {
               </div>
             </form>
 
-            <div className="flex gap-4 mt-8">
+            <div className="flex gap-4 mt-4 md:mt-8">
               <button
                 onClick={() => {
                   dispatch(addToFavorites({ id, size }));
@@ -138,8 +150,8 @@ const Bag = ({ id, size, getTotal, index }) => {
           <p className="ml-auto">${productData?.price.toFixed(2)}</p>
         </div>
 
-        <p>Free Shipping</p>
-        <p>
+        <p className="text-sm md:tex-base">Free Shipping</p>
+        <p className="text-sm md:tex-base">
           Arrive by{' '}
           {new Date(
             new Date().getTime() + 7 * 24 * 60 * 60 * 1000
@@ -151,8 +163,10 @@ const Bag = ({ id, size, getTotal, index }) => {
           <span className="pb-1 border-b border-gray-800">Edit Location</span>
         </p>
 
-        <p className="mt-10">Free Pickup</p>
-        <p className="pb-1 border-b border-gray-800 w-max">Find a Store</p>
+        <p className="mt-6 text-sm md:tex-base md:mt-10">Free Pickup</p>
+        <p className="pb-1 border-b text-sm md:tex-base border-gray-800 w-max">
+          Find a Store
+        </p>
       </div>
     </>
   );
