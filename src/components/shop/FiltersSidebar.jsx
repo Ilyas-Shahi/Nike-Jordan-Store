@@ -2,9 +2,18 @@ import FormCheck from '../layout/FormCheck';
 import FilterColor from './FilterColor';
 import FilterOption from './FilterOption';
 
+import CrossIcon from '../../assets/svg/cross-icon.svg';
+
 const FiltersSidebar = () => {
   return (
     <div className="w-full">
+      <div className="flex md:hidden justify-between">
+        <p>Filter</p>
+        <button className="bg-gray-200 rounded-full h-7 w-7 p-1">
+          <img src={CrossIcon} alt="" />
+        </button>
+      </div>
+
       <FilterOption title="Gender">
         <FormCheck label="Men" id={`"Men's"`} />
         <FormCheck label="Women" id={`"Women's"`} />

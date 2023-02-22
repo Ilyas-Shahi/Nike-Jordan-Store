@@ -55,21 +55,27 @@ const OptionFiltersHeader = ({ handleShowFilters, handleSort }) => {
     <>
       <div className={`${headerFixTrigger ? 'h-24' : 'h-0'}`} />
       <div
-        className={`flex items-center justify-between px-12 bg-white w-full z-50 ${
-          headerFixTrigger ? 'fixed top-0 h-12 pt-2 pb-4' : 'h-24 pt-2 pb-6'
+        className={`md:flex items-center justify-between px-6 md:px-12 bg-white w-full z-50 ${
+          headerFixTrigger
+            ? 'fixed top-0 h-12 pt-2 pb-4'
+            : 'md:h-24 pt-2 md:pt-2 md:pb-6'
         }`}
       >
         <div>
-          {!headerFixTrigger && <p>Jordan / Shoes</p>}
+          {!headerFixTrigger && (
+            <p className="mb-4 text-sm md:text-base">Jordan / Shoes</p>
+          )}
           <h2
             className={`transition-all ${
-              headerFixTrigger ? 'text-lg' : 'text-2xl'
+              headerFixTrigger ? 'text-base md:text-lg' : 'text-xl md:text-2xl'
             }`}
           >
-            Jordan Shoes & Sneakers ({numOfShownProducts})
+            Jordan Shoes & Sneakers{' '}
+            <span className="hidden md:inline">({numOfShownProducts})</span>
           </h2>
         </div>
-        <div className="relative flex gap-8 mt-7">
+
+        <div className="relative hidden gap-8 md:flex mt-7">
           <button
             onClick={() => setShowFilters(!showFilters)}
             className="flex gap-3"
@@ -114,6 +120,19 @@ const OptionFiltersHeader = ({ handleShowFilters, handleSort }) => {
             ))}
           </div>
         </div>
+
+        {!headerFixTrigger && (
+          <div className="flex justify-between items-center py-2 mt-5 border-t md:hidden">
+            <p className="text-gray-400">{numOfShownProducts} Results</p>
+            <button
+              onClick={() => setShowFilters(!showFilters)}
+              className="flex gap-1 px-5 py-2 border rounded-full"
+            >
+              Filter
+              <img src={FiltersIcon} alt="" />
+            </button>
+          </div>
+        )}
       </div>
     </>
   );

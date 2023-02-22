@@ -1,5 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+
+import useIsMobileBreakpoint from '../hooks/useIsMobileBreakpoint';
 
 import OptionFiltersHeader from '../components/shop/OptionFiltersHeader';
 import FiltersSidebar from '../components/shop/FiltersSidebar';
@@ -7,7 +10,6 @@ import ProductsGrid from '../components/shop/ProductsGrid';
 import useScrollTrigger from '../hooks/useScrollTrigger';
 
 import './sidebarStyles.css';
-import { useSelector } from 'react-redux';
 
 const Shop = () => {
   const [showFilters, setShowFilters] = useState(true);
@@ -25,6 +27,7 @@ const Shop = () => {
   let query = `*[_type == 'product'${genderFilter}${priceFilter}${kidsFilter}${colorFilter}${searchFilter}]${sortByQuery}`;
 
   const fixSidebar = useScrollTrigger(150);
+  const isMobileScreen = useIsMobileBreakpoint();
 
   const handleShowFilters = (filter) => {
     setShowFilters(filter);
@@ -47,6 +50,15 @@ const Shop = () => {
     }
   };
 
+  useEffect(() => {
+    if (isMobileScreen && showFilters) {
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.body.style.overflow = 'visible';
+    };
+  }, [isMobileScreen, showFilters]);
+
   return (
     <>
       <OptionFiltersHeader
@@ -54,10 +66,10 @@ const Shop = () => {
         handleSort={handleSort}
       />
 
-      <div className="flex px-12 gap-4">
+      <div className="md:flex px-1.5 md:px-12">
         <div
-          className={`relative flex-auto transition-all duration-300  ${
-            showFilters ? 'w-[15%]' : 'w-0'
+          className={`absolute top-0 left-0 z-50 p-6 md:p-0 md:relative bg-white flex-auto transition-all duration-300  ${
+            showFilters ? 'w-full md:w-[15%]' : 'w-0'
           } `}
         >
           <div
@@ -71,13 +83,13 @@ const Shop = () => {
 
         <div
           className={`flex-auto transition-all duration-300 ${
-            showFilters ? 'w-[85%] ml-10' : 'w-full ml-0'
+            showFilters ? 'md:w-[85%] md:ml-14' : 'w-full ml-0'
           }`}
         >
           <ProductsGrid query={query} />
 
           {!numOfShownProducts && (
-            <h2 className="text-3xl mx-auto w-max mt-10">
+            <h2 className="mx-auto mt-10 text-3xl w-max">
               Sorry, we couldn't find what you're looking for.
             </h2>
           )}
