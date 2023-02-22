@@ -77,7 +77,7 @@ const Header = () => {
           <img
             src={NikeLogo}
             alt=""
-            className={`object-cover w-16 md:w-20 h-12 md:h-14 hover:opacity-70 ${
+            className={`object-cover w-24 md:w-20 h-10 md:h-14 hover:opacity-70 ${
               showBackdrop && 'hidden md:block'
             }`}
           />
@@ -95,7 +95,7 @@ const Header = () => {
           </ul>
         )}
 
-        <div className="relative flex justify-end gap-4 transition-all w-full md:w-max">
+        <div className="relative flex justify-end gap-2 md:gap-4 transition-all w-full md:w-max">
           <form
             onSubmit={(e) => {
               e.preventDefault();

@@ -21,9 +21,11 @@ const PopularSection = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between px-12 my-8">
-        <h3 className="text-2xl font-extrabold">POPULAR RIGHT NOW</h3>
-        <div className="flex gap-2">
+      <div className="flex items-center justify-between px-6 my-8 md:px-12 pt-20 md:pt-0">
+        <h3 className="text-2xl font-extrabold tracking-tight">
+          POPULAR RIGHT NOW
+        </h3>
+        <div className="hidden gap-2 md:flex">
           <button
             onClick={() => swiperRef.current?.slidePrev()}
             className="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-full hover:bg-gray-200"
@@ -40,13 +42,16 @@ const PopularSection = () => {
       </div>
 
       <Swiper
-        slidesPerView={2}
+        slidesPerView={1.4}
         spaceBetween={14}
         centeredSlides={false}
         keyboard={{
           enabled: true,
         }}
         breakpoints={{
+          640: {
+            slidesPerView: 2,
+          },
           769: {
             slidesPerView: 3,
           },
@@ -58,7 +63,7 @@ const PopularSection = () => {
         onBeforeInit={(swiper) => {
           swiperRef.current = swiper;
         }}
-        className="px-12 pb-8 mySwiper"
+        className="px-6 pb-8 md:px-12 mySwiper"
       >
         {products[0]?.result.map((product, index) => {
           if (index < 10) {
@@ -70,7 +75,7 @@ const PopularSection = () => {
                 >
                   <SanityImage
                     imageRef={product.gallery.images[0].asset._ref}
-                    className="h-[30vw] w-full object-cover"
+                    className="h-[70vw] md:h-[30vw] w-full object-cover"
                   />
 
                   <div className="flex justify-between my-6">
@@ -98,7 +103,7 @@ const PopularSection = () => {
                       />
                     )}
                     {product.specialty && (
-                      <p className="w-2/3 mt-8 text-2xl text-amber-900 transition-all duration-700 opacity-0 group-hover:opacity-70">
+                      <p className="w-3/4 md:w-2/3 mt-2 md:mt-8 text-xl md:text-2xl transition-all duration-700 opacity-0 text-amber-900 group-hover:opacity-70">
                         Get this product with your free Nike Membership Profile
                       </p>
                     )}
