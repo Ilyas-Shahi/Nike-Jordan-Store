@@ -1,17 +1,103 @@
+import { useDispatch, useSelector } from 'react-redux';
+
 import FormCheck from '../layout/FormCheck';
 import FilterColor from './FilterColor';
 import FilterOption from './FilterOption';
 
 import CrossIcon from '../../assets/svg/cross-icon.svg';
+import { setSortFilter } from '../../redux-store/filtersSlice';
 
-const FiltersSidebar = () => {
+const FiltersSidebar = ({ handleShowFilters }) => {
+  const sortBy = useSelector((state) => state.filters.sortBy);
+
+  const dispatch = useDispatch();
+
   return (
     <div className="w-full">
-      <div className="flex md:hidden justify-between">
+      <div className="flex md:hidden justify-between mb-4">
         <p>Filter</p>
-        <button className="bg-gray-200 rounded-full h-7 w-7 p-1">
+        <button
+          onClick={() => handleShowFilters(false)}
+          className="bg-gray-200 rounded-full h-8 w-8 p-1 fixed top-4 right-8 z-40"
+        >
           <img src={CrossIcon} alt="" />
         </button>
+      </div>
+
+      <div className="pt-3 border-b pb-3 md:hidden">
+        <form
+          onChange={(e) => {
+            dispatch(setSortFilter(e.target.value));
+          }}
+        >
+          <div className="mb-4">
+            <input
+              className="w-5 h-5"
+              type="radio"
+              value="Featured"
+              name="sort"
+              id="Featured"
+              checked={sortBy === 'Featured'}
+            />
+            <label
+              htmlFor="Featured"
+              className="text-lg ml-2 cursor-pointer hover:text-gray-600"
+            >
+              Featured
+            </label>
+          </div>
+
+          <div className="mb-4">
+            <input
+              className="w-5 h-5"
+              type="radio"
+              value="Newest"
+              name="sort"
+              id="Newest"
+              checked={sortBy === 'Newest'}
+            />
+            <label
+              htmlFor="Newest"
+              className="text-lg ml-2 cursor-pointer hover:text-gray-600"
+            >
+              Newest
+            </label>
+          </div>
+
+          <div className="mb-4">
+            <input
+              className="w-5 h-5"
+              type="radio"
+              value="Price: High-Low"
+              name="sort"
+              id="Price: High-Low"
+              checked={sortBy === 'Price: High-Low'}
+            />
+            <label
+              htmlFor="Price: High-Low"
+              className="text-lg ml-2 cursor-pointer hover:text-gray-600"
+            >
+              Price: High-Low
+            </label>
+          </div>
+
+          <div className="mb-4">
+            <input
+              className="w-5 h-5"
+              type="radio"
+              value="Price: Low-High"
+              name="sort"
+              id="Price: Low-High"
+              checked={sortBy === 'Price: Low-High'}
+            />
+            <label
+              htmlFor="Price: Low-High"
+              className="text-lg ml-2 cursor-pointer hover:text-gray-600"
+            >
+              Price: Low-High
+            </label>
+          </div>
+        </form>
       </div>
 
       <FilterOption title="Gender">

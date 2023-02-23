@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   numOfShownProducts: 0,
+  sortBy: 'Featured',
+  sortFilter: ' | order(price desc)',
   genderFilter: '',
   priceFilter: '',
   kidsFilter: '',
@@ -15,6 +17,25 @@ export const filtersSlice = createSlice({
   reducers: {
     numOfShownProductsSetter: (state, action) => {
       state.numOfShownProducts = action.payload;
+    },
+
+    setSortFilter: (state, action) => {
+      state.sortBy = action.payload;
+
+      switch (action.payload) {
+        case 'Featured':
+          state.sortFilter = ' | order(_createdAt asc)';
+          break;
+        case 'Newest':
+          state.sortFilter = ' | order(_createdAt desc)';
+          break;
+        case 'Price: High-Low':
+          state.sortFilter = ' | order(price desc)';
+          break;
+        case 'Price: Low-High':
+          state.sortFilter = ' | order(price asc)';
+          break;
+      }
     },
 
     setGenderFilter: (state, action) => {
@@ -59,6 +80,7 @@ export const filtersSlice = createSlice({
 
 export const {
   numOfShownProductsSetter,
+  setSortFilter,
   setPriceFilter,
   setGenderFilter,
   setKidsFilter,

@@ -12,42 +12,26 @@ import useScrollTrigger from '../hooks/useScrollTrigger';
 import './sidebarStyles.css';
 
 const Shop = () => {
-  const [showFilters, setShowFilters] = useState(true);
-  const [sortByQuery, setSortByQuery] = useState(' | order(_createdAt asc)');
+  const [showFilters, setShowFilters] = useState();
 
   const numOfShownProducts = useSelector(
     (state) => state.filters.numOfShownProducts
   );
+
+  const sortFilter = useSelector((state) => state.filters.sortFilter);
   const genderFilter = useSelector((state) => state.filters.genderFilter);
   const priceFilter = useSelector((state) => state.filters.priceFilter);
   const kidsFilter = useSelector((state) => state.filters.kidsFilter);
   const colorFilter = useSelector((state) => state.filters.colorFilter);
   const searchFilter = useSelector((state) => state.filters.searchFilter);
 
-  let query = `*[_type == 'product'${genderFilter}${priceFilter}${kidsFilter}${colorFilter}${searchFilter}]${sortByQuery}`;
+  let query = `*[_type == 'product'${genderFilter}${priceFilter}${kidsFilter}${colorFilter}${searchFilter}]${sortFilter}`;
 
   const fixSidebar = useScrollTrigger(150);
   const isMobileScreen = useIsMobileBreakpoint();
 
   const handleShowFilters = (filter) => {
     setShowFilters(filter);
-  };
-
-  const handleSort = (option) => {
-    switch (option) {
-      case 'Featured':
-        setSortByQuery(' | order(_createdAt asc)');
-        break;
-      case 'Newest':
-        setSortByQuery(' | order(_createdAt desc)');
-        break;
-      case 'Price: High-Low':
-        setSortByQuery(' | order(price desc)');
-        break;
-      case 'Price: Low-High':
-        setSortByQuery(' | order(price asc)');
-        break;
-    }
   };
 
   useEffect(() => {
@@ -59,26 +43,39 @@ const Shop = () => {
     };
   }, [isMobileScreen, showFilters]);
 
+  useEffect(() => {
+    if (isMobileScreen) {
+      console.log(isMobileScreen);
+      setShowFilters(false);
+    } else {
+      setShowFilters(true);
+    }
+  }, [isMobileScreen]);
+
+  console.log(isMobileScreen);
+
   return (
     <>
       <OptionFiltersHeader
+        showFilters={showFilters}
         handleShowFilters={handleShowFilters}
-        handleSort={handleSort}
       />
 
-      <div className="md:flex px-1.5 md:px-12">
+      <div className="md:flex px-1.5 md:px-12 pb-10">
         <div
-          className={`absolute top-0 left-0 z-50 p-6 md:p-0 md:relative bg-white flex-auto transition-all duration-300  ${
-            showFilters ? 'w-full md:w-[15%]' : 'w-0'
+          className={`absolute top-0 left-0 z-50 md:relative bg-white flex-auto transition-all duration-300  ${
+            showFilters ? 'w-full md:w-[15%] md:p-0' : 'w-0'
           } `}
         >
-          <div
-            className={`sidebar h-screen pr-8 pb-16 overflow-y-scroll  ${
-              fixSidebar ? 'sticky top-12' : ''
-            }`}
-          >
-            {showFilters && <FiltersSidebar />}
-          </div>
+          {showFilters && (
+            <div
+              className={`h-screen md:pr-8 pb-16 overflow-y-scroll ${
+                fixSidebar ? 'sticky top-12' : ''
+              } ${!isMobileScreen ? 'sidebar' : 'p-6'}`}
+            >
+              <FiltersSidebar handleShowFilters={handleShowFilters} />
+            </div>
+          )}
         </div>
 
         <div

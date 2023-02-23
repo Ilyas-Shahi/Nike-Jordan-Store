@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import FiltersIcon from '../../assets/svg/filters-icon.svg';
 import DownChevron from '../../assets/svg/chevron-down.svg';
 import useScrollTrigger from '../../hooks/useScrollTrigger';
-import { useSelector } from 'react-redux';
+import { setSortFilter } from '../../redux-store/filtersSlice';
 
 const sortOptions = [
   'Featured',
@@ -12,10 +13,13 @@ const sortOptions = [
   'Price: Low-High',
 ];
 
-const OptionFiltersHeader = ({ handleShowFilters, handleSort }) => {
-  const [showFilters, setShowFilters] = useState(true);
+const OptionFiltersHeader = ({ handleShowFilters, showFilters }) => {
   const [showSort, setShowSort] = useState(false);
-  const [sortBy, setSortBy] = useState('Featured');
+  // const [sortBy, setSortBy] = useState('Featured');
+
+  const sortBy = useSelector((state) => state.filters.sortBy);
+
+  const dispatch = useDispatch();
 
   const headerFixTrigger = useScrollTrigger(140);
 
@@ -26,13 +30,9 @@ const OptionFiltersHeader = ({ handleShowFilters, handleSort }) => {
     (state) => state.filters.numOfShownProducts
   );
 
-  useEffect(() => {
-    handleShowFilters(showFilters);
-  }, [handleShowFilters, showFilters]);
-
-  useEffect(() => {
-    handleSort(sortBy);
-  }, [handleSort, sortBy]);
+  // useEffect(() => {
+  //   handleSort(sortBy);
+  // }, [handleSort, sortBy]);
 
   useEffect(() => {
     const checkClick = (e) => {
@@ -77,7 +77,7 @@ const OptionFiltersHeader = ({ handleShowFilters, handleSort }) => {
 
         <div className="relative hidden gap-8 md:flex mt-7">
           <button
-            onClick={() => setShowFilters(!showFilters)}
+            onClick={() => handleShowFilters(!showFilters)}
             className="flex gap-3"
           >
             {showFilters ? 'Hide' : 'Show'} Filters
@@ -108,7 +108,7 @@ const OptionFiltersHeader = ({ handleShowFilters, handleSort }) => {
               <button
                 key={i}
                 onClick={() => {
-                  setSortBy(option);
+                  dispatch(setSortFilter(option));
                   setShowSort(false);
                 }}
                 className={`hover:text-gray-500 ${
@@ -125,7 +125,7 @@ const OptionFiltersHeader = ({ handleShowFilters, handleSort }) => {
           <div className="flex justify-between items-center py-2 mt-5 border-t md:hidden">
             <p className="text-gray-400">{numOfShownProducts} Results</p>
             <button
-              onClick={() => setShowFilters(!showFilters)}
+              onClick={() => handleShowFilters(!showFilters)}
               className="flex gap-1 px-5 py-2 border rounded-full"
             >
               Filter

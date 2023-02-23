@@ -67,16 +67,22 @@ const ShopJordanIcons = () => {
           className="pb-8 mySwiper"
         >
           <SwiperSlide className="ml-6">
-            <img src={ClothingImgMb} alt="" className="w-full" />
-            <h4 className="mt-5 text-base font-bold">CLOTHING</h4>
+            <Link to="/shop">
+              <img src={ClothingImgMb} alt="" className="w-full" />
+              <h4 className="mt-5 text-base font-bold">CLOTHING</h4>
+            </Link>
           </SwiperSlide>
           <SwiperSlide className="">
-            <img src={ShoesImgMb} alt="" className="w-full" />
-            <h4 className="mt-5 text-base font-bold">SHOES</h4>
+            <Link to="/shop">
+              <img src={ShoesImgMb} alt="" className="w-full" />
+              <h4 className="mt-5 text-base font-bold">SHOES</h4>
+            </Link>
           </SwiperSlide>
           <SwiperSlide className="mr-6">
-            <img src={AccessoriesImgMb} alt="" className="w-full" />
-            <h4 className="mt-5 text-base font-bold">ACCESSORIES</h4>
+            <Link to="/shop">
+              <img src={AccessoriesImgMb} alt="" className="w-full" />
+              <h4 className="mt-5 text-base font-bold">ACCESSORIES</h4>
+            </Link>
           </SwiperSlide>
         </Swiper>
       )}
