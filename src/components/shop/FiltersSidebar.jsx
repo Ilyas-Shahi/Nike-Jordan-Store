@@ -13,12 +13,12 @@ const FiltersSidebar = ({ handleShowFilters }) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="w-full">
+    <div className="w-full md:pr-4 p-6 md:p-0">
       <div className="flex md:hidden justify-between mb-4">
         <p>Filter</p>
         <button
           onClick={() => handleShowFilters(false)}
-          className="bg-gray-200 rounded-full h-8 w-8 p-1 fixed top-4 right-8 z-40"
+          className="bg-gray-200 rounded-full h-8 w-8 p-1"
         >
           <img src={CrossIcon} alt="" />
         </button>

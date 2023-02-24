@@ -69,7 +69,7 @@ const Header = () => {
         />
       )}
       <div
-        className={`flex items-center justify-between bg-white z-50 px-4 md:px-12 py-2 transition-all ${
+        className={`flex items-center justify-between bg-white z-50 px-4 md:px-12 md:py-1 py-2 transition-all ${
           scrollAnimation && 'pb-10 -mt-10'
         } ${showNotification && 'sticky top-0'} ${
           showMobileMenu && 'overflow-hidden'
@@ -86,18 +86,41 @@ const Header = () => {
         </Link>
 
         {!showBackdrop && (
-          <ul className="hidden gap-5 md:flex lg:ml-44">
-            <li className="text-sm cursor-pointer md:text-base">
-              New & Featured
-            </li>
-            <li className="text-sm cursor-pointer md:text-base">Men</li>
-            <li className="text-sm cursor-pointer md:text-base">Women</li>
-            <li className="text-sm cursor-pointer md:text-base">Kids</li>
-            <li className="text-sm cursor-pointer md:text-base">Sale</li>
+          <ul className="hidden gap-1 md:flex xl:ml-56 lg:ml-40">
+            <Link to="/shop">
+              <li className="p-3 text-sm border-b-2 border-white cursor-pointer md:text-base hover:border-gray-800">
+                New & Featured
+              </li>
+            </Link>
+            <Link to="/shop">
+              <li className="p-3 text-sm border-b-2 border-white cursor-pointer md:text-base hover:border-gray-800">
+                Men
+              </li>
+            </Link>
+            <Link to="/shop">
+              <li className="p-3 text-sm border-b-2 border-white cursor-pointer md:text-base hover:border-gray-800">
+                Women
+              </li>
+            </Link>
+            <Link to="/shop">
+              <li className="p-3 text-sm border-b-2 border-white cursor-pointer md:text-base hover:border-gray-800">
+                Kids
+              </li>
+            </Link>
+            <Link to="/shop">
+              <li className="p-3 text-sm border-b-2 border-white cursor-pointer md:text-base hover:border-gray-800 sm:hidden 2md:block">
+                Accessories
+              </li>
+            </Link>
+            <Link to="/shop">
+              <li className="p-3 text-sm border-b-2 border-white cursor-pointer md:text-base hover:border-gray-800 sm:hidden 2lg:block">
+                Sale
+              </li>
+            </Link>
           </ul>
         )}
 
-        <div className="relative flex justify-end gap-2 md:gap-4 transition-all w-full md:w-max">
+        <div className="relative flex justify-end w-full gap-2 transition-all md:gap-4 md:w-max">
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -165,7 +188,7 @@ const Header = () => {
 
         {showBackdrop && showElement && (
           <p
-            className="transition-all cursor-pointer ml-6 md:ml-0"
+            className="ml-6 transition-all cursor-pointer md:ml-0"
             onClick={() => setShowBackdrop(false)}
           >
             Cancel

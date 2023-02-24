@@ -15,7 +15,6 @@ const sortOptions = [
 
 const OptionFiltersHeader = ({ handleShowFilters, showFilters }) => {
   const [showSort, setShowSort] = useState(false);
-  // const [sortBy, setSortBy] = useState('Featured');
 
   const sortBy = useSelector((state) => state.filters.sortBy);
 
@@ -29,10 +28,6 @@ const OptionFiltersHeader = ({ handleShowFilters, showFilters }) => {
   const numOfShownProducts = useSelector(
     (state) => state.filters.numOfShownProducts
   );
-
-  // useEffect(() => {
-  //   handleSort(sortBy);
-  // }, [handleSort, sortBy]);
 
   useEffect(() => {
     const checkClick = (e) => {
@@ -63,7 +58,7 @@ const OptionFiltersHeader = ({ handleShowFilters, showFilters }) => {
       >
         <div>
           {!headerFixTrigger && (
-            <p className="mb-4 text-sm md:text-base">Jordan / Shoes</p>
+            <p className="mb-4 md:mb-0 text-sm md:text-base">Jordan / Shoes</p>
           )}
           <h2
             className={`transition-all ${

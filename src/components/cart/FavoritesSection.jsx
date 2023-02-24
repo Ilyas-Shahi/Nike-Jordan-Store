@@ -10,7 +10,7 @@ const FavoritesSection = () => {
 
   return (
     <>
-      <h1 className="my-8 mt-20 md:mt-0 text-xl md:text-2xl">Favorites</h1>
+      <h1 className="my-8 mt-20 text-xl md:text-2xl">Favorites</h1>
 
       <div className="md:grid grid-cols-2 gap-4 mb-8 border-b">
         {favoriteItems.map((item, index) => {

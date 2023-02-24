@@ -20,11 +20,11 @@ const ProductsGrid = ({ query }) => {
       {products[0]?.result.map((product, index) => {
         if (index < 24) {
           return (
-            <div key={product._id} className="h-max pb-2">
+            <div key={product._id} className="pb-2 xl:-mb-14">
               <Link to={`/shop/${product.slug.current}/?id=${product._id}`}>
                 <SanityImage
                   imageRef={product.gallery.images[0].asset._ref}
-                  className="object-cover w-full mb-3 transition-all h-60 md:h-2/3"
+                  className="object-cover w-full mb-3 transition-all h-52 md:h-[62%]"
                 />
 
                 <div className="px-2 md:px-0">

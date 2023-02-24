@@ -25,10 +25,10 @@ const Notification = () => {
   }, 6000);
 
   return (
-    <div className="fixed z-50 w-full h-full">
+    <div className="fixed md:top-16 z-50 w-full h-full">
       <div className="absolute z-10 w-full h-full bg-black bg-opacity-70"></div>
 
-      <div className="absolute z-40 p-6 bg-white w-[440px] right-6">
+      <div className="absolute z-40 p-6 bg-white w-full md:w-[440px] right-0 md:right-6">
         <div className="flex justify-between">
           <p>
             <img
@@ -68,12 +68,18 @@ const Notification = () => {
         {notificationType == 'Cart' && (
           <div className="flex gap-4 mt-6">
             <Link to="/cart" className="w-full">
-              <button className="w-full p-4 border border-gray-400 rounded-full hover:border-gray-500">
+              <button
+                onClick={() => dispatch(closeNotification())}
+                className="w-full p-4 border border-gray-400 rounded-full hover:border-gray-500"
+              >
                 View Bag ({cartItemsNum})
               </button>
             </Link>
             <Link to="/cart" className="w-full">
-              <button className="w-full p-4 text-white bg-black border border-black rounded-full hover:bg-opacity-70">
+              <button
+                onClick={() => dispatch(closeNotification())}
+                className="w-full p-4 text-white bg-black border border-black rounded-full hover:bg-opacity-70"
+              >
                 Checkout
               </button>
             </Link>
@@ -83,7 +89,10 @@ const Notification = () => {
         {notificationType == 'Favorites' && (
           <div className="flex gap-4 mt-6">
             <Link to="/favorites" className="w-full">
-              <button className="w-full p-4 text-white bg-black border border-black rounded-full hover:bg-opacity-70">
+              <button
+                onClick={() => dispatch(closeNotification())}
+                className="w-full p-4 text-white bg-black border border-black rounded-full hover:bg-opacity-70"
+              >
                 View Favorites
               </button>
             </Link>

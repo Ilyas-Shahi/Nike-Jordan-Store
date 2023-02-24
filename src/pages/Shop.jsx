@@ -63,24 +63,22 @@ const Shop = () => {
 
       <div className="md:flex px-1.5 md:px-12 pb-10">
         <div
-          className={`absolute top-0 left-0 z-50 md:relative bg-white flex-auto transition-all duration-300  ${
-            showFilters ? 'w-full md:w-[15%] md:p-0' : 'w-0'
+          className={`absolute top-0 left-0 z-40 md:z-0 md:relative bg-white transition-all duration-300  ${
+            showFilters ? 'w-full md:w-64 md:p-0' : 'w-0'
           } `}
         >
-          {showFilters && (
-            <div
-              className={`h-screen md:pr-8 pb-16 overflow-y-scroll ${
-                fixSidebar ? 'sticky top-12' : ''
-              } ${!isMobileScreen ? 'sidebar' : 'p-6'}`}
-            >
-              <FiltersSidebar handleShowFilters={handleShowFilters} />
-            </div>
-          )}
+          <div
+            className={`h-screen pb-16 overflow-y-scroll ${
+              fixSidebar ? 'sticky top-12' : ''
+            } ${!isMobileScreen ? 'sidebar' : ''}`}
+          >
+            <FiltersSidebar handleShowFilters={handleShowFilters} />
+          </div>
         </div>
 
         <div
-          className={`flex-auto transition-all duration-300 ${
-            showFilters ? 'md:w-[85%] md:ml-14' : 'w-full ml-0'
+          className={`transition-all duration-300 w-full ${
+            showFilters ? 'md:ml-14' : 'ml-0'
           }`}
         >
           <ProductsGrid query={query} />
