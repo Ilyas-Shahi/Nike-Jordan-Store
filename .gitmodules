@@ -1,0 +1,3 @@
+[submodule "<submodule-path>"]
+	path = '/sanity'
+	url = 'https://github.com/Ilyas-Shahi/Nike-Jordan-Store'
