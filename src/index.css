@@ -14,3 +14,39 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Scrollbar for Swiper Slides */
+.swiper-scrollbar {
+  background: transparent !important;
+}
+
+.swiper-scrollbar.swiper-scrollbar-horizontal {
+  height: 5px;
+  padding: 0 36px;
+}
+
+.swiper-scrollbar.swiper-scrollbar-horizontal > .swiper-scrollbar-drag {
+  width: 26vw !important;
+  background-color: rgba(0, 0, 0, 0.623);
+}
+
+.swiperStyles > .swiper-scrollbar.swiper-scrollbar-horizontal {
+  height: 4px;
+  padding: 0px;
+  margin: -2px;
+}
+
+.swiperStyles
+  > .swiper-scrollbar.swiper-scrollbar-horizontal
+  > .swiper-scrollbar-drag {
+  width: 10vw !important;
+  border-radius: 1px;
+  background-color: rgba(0, 0, 0, 0.159);
+}
+
+@media (max-width: 768px) {
+  .swiper-scrollbar.swiper-scrollbar-horizontal {
+    height: 5px;
+    padding: 0 20px;
+  }
+}

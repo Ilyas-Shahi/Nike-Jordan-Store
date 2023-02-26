@@ -1,21 +1,15 @@
 import { useRef } from 'react';
-import { Link } from 'react-router-dom';
-import useFetch from '../../hooks/useFetch';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { FreeMode, Keyboard, Navigation, Scrollbar } from 'swiper';
+import { FreeMode, Navigation, Scrollbar } from 'swiper';
 import SanityImage from '../layout/SanityImage';
 
 import PrevChevIcon from '../../assets/svg/left-chev.svg';
 import NextChevIcon from '../../assets/svg/righ-chev.svg';
-import LockIcon from '../../assets/svg/lock-icon.svg';
 
 import 'swiper/css';
-// import 'swiper/css/scrollbar';
 
-import './swiperStyles.css';
-
-const ProductImagesSlider = ({ images }) => {
+const ProductPicSliderMob = ({ images }) => {
   const swiperRef = useRef();
 
   return (
@@ -61,4 +55,4 @@ const ProductImagesSlider = ({ images }) => {
     </>
   );
 };
-export default ProductImagesSlider;
+export default ProductPicSliderMob;

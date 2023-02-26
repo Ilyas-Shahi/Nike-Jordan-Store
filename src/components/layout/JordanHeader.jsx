@@ -1,22 +1,8 @@
-import { useEffect, useState } from 'react';
 import JordanLogo from '../../assets/svg/jordan-logo.svg';
+import useScrollTrigger from '../../hooks/useScrollTrigger';
 
 const JordanHeader = () => {
-  const [scrollAnimation, setScrollAnimation] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY >= 140) {
-        setScrollAnimation(true);
-      } else {
-        setScrollAnimation(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const scrollAnimation = useScrollTrigger(140);
 
   return (
     <>

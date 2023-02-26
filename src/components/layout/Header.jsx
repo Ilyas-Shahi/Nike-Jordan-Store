@@ -4,6 +4,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { setSearchFilter } from '../../redux-store/filtersSlice';
 
 import HeaderSlider from './HeaderSlider';
 import Notification from './Notification';
@@ -13,7 +14,6 @@ import SearchIcon from '../../assets/svg/search-icon.svg';
 import HeartIcon from '../../assets/svg/heart-icon.svg';
 import CartIcon from '../../assets/svg/cart-icon.svg';
 import HamburgerMenuIcon from '../../assets/svg/hamburger-menu.svg';
-import { setSearchFilter } from '../../redux-store/filtersSlice';
 import MobileMenu from './MobileMenu';
 
 const Header = () => {
@@ -48,7 +48,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY >= 30) {
+      if (window.scrollY >= 20) {
         setScrollAnimation(true);
       } else {
         setScrollAnimation(false);
@@ -69,8 +69,8 @@ const Header = () => {
         />
       )}
       <div
-        className={`flex items-center justify-between bg-white z-50 px-4 md:px-12 md:py-1 py-2 transition-all ${
-          scrollAnimation && 'pb-10 -mt-10'
+        className={`flex items-center justify-between bg-white z-50 px-4 md:px-12 md:py-0 py-2 transition-all ${
+          scrollAnimation && 'pb-10 md:pb-10 -mt-10'
         } ${showNotification && 'sticky top-0'} ${
           showMobileMenu && 'overflow-hidden'
         }`}
@@ -88,32 +88,32 @@ const Header = () => {
         {!showBackdrop && (
           <ul className="hidden gap-1 md:flex xl:ml-56 lg:ml-40">
             <Link to="/shop">
-              <li className="p-3 text-sm border-b-2 border-white cursor-pointer md:text-base hover:border-gray-800">
+              <li className="p-4 text-sm border-b-2 border-white cursor-pointer md:text-base hover:border-gray-800">
                 New & Featured
               </li>
             </Link>
             <Link to="/shop">
-              <li className="p-3 text-sm border-b-2 border-white cursor-pointer md:text-base hover:border-gray-800">
+              <li className="p-4 text-sm border-b-2 border-white cursor-pointer md:text-base hover:border-gray-800">
                 Men
               </li>
             </Link>
             <Link to="/shop">
-              <li className="p-3 text-sm border-b-2 border-white cursor-pointer md:text-base hover:border-gray-800">
+              <li className="p-4 text-sm border-b-2 border-white cursor-pointer md:text-base hover:border-gray-800">
                 Women
               </li>
             </Link>
             <Link to="/shop">
-              <li className="p-3 text-sm border-b-2 border-white cursor-pointer md:text-base hover:border-gray-800">
+              <li className="p-4 text-sm border-b-2 border-white cursor-pointer md:text-base hover:border-gray-800">
                 Kids
               </li>
             </Link>
             <Link to="/shop">
-              <li className="p-3 text-sm border-b-2 border-white cursor-pointer md:text-base hover:border-gray-800 sm:hidden 2md:block">
+              <li className="p-4 text-sm border-b-2 border-white cursor-pointer md:text-base hover:border-gray-800 sm:hidden 2md:block">
                 Accessories
               </li>
             </Link>
             <Link to="/shop">
-              <li className="p-3 text-sm border-b-2 border-white cursor-pointer md:text-base hover:border-gray-800 sm:hidden 2lg:block">
+              <li className="p-4 text-sm border-b-2 border-white cursor-pointer md:text-base hover:border-gray-800 sm:hidden 2lg:block">
                 Sale
               </li>
             </Link>

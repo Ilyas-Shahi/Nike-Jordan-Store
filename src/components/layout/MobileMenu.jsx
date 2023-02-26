@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import CrossIcon from '../../assets/svg/cross-icon.svg';
@@ -8,8 +10,6 @@ import CartIcon from '../../assets/svg/cart-icon.svg';
 import OrdersIcon from '../../assets/svg/orders-icon.svg';
 import StoreIcon from '../../assets/svg/store-icon.svg';
 import SupportIcon from '../../assets/svg/support-icon.svg';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const MobileMenu = ({ setShowMobileMenu }) => {
   const cartItemsNum = useSelector((state) => state.cart.cartItems)?.length;

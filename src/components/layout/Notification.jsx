@@ -1,11 +1,12 @@
-import useFetch from '../../hooks/useFetch';
-
-import CheckMarkIcon from '../../assets/svg/checkmark.svg';
-import CrossIcon from '../../assets/svg/cross-icon.svg';
-import SanityImage from './SanityImage';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeNotification } from '../../redux-store/notificationSlice';
+
+import useFetch from '../../hooks/useFetch';
+import SanityImage from './SanityImage';
+
+import CheckMarkIcon from '../../assets/svg/checkmark.svg';
+import CrossIcon from '../../assets/svg/cross-icon.svg';
 
 const Notification = () => {
   const notificationContent = useSelector(

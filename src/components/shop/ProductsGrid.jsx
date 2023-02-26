@@ -2,8 +2,9 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import useFetch from '../../hooks/useFetch';
 import { numOfShownProductsSetter } from '../../redux-store/filtersSlice';
+import useFetch from '../../hooks/useFetch';
+
 import SanityImage from '../layout/SanityImage';
 
 const ProductsGrid = ({ query }) => {

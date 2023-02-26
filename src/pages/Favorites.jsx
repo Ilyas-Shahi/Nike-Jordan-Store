@@ -1,21 +1,26 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+
+import { addToCart } from '../redux-store/cartSlice';
+import { removeFromFavorites } from '../redux-store/favoritesSlice';
+import { showNotification } from '../redux-store/notificationSlice';
 
 import useFetch from '../hooks/useFetch';
 import SanityImage from '../components/layout/SanityImage';
 
 import HeartIcon from '../assets/svg/heart-icon.svg';
 import HeartFilledIcon from '../assets/svg/heart-filled.svg';
-import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../redux-store/cartSlice';
-import { Link, useNavigate } from 'react-router-dom';
-import { removeFromFavorites } from '../redux-store/favoritesSlice';
-import { showNotification } from '../redux-store/notificationSlice';
 
 const Favorites = () => {
   const favoriteItems = useSelector((state) => state.favorites.favoriteItems);
   const [edit, setEdit] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

@@ -38,21 +38,19 @@ const Shop = () => {
     if (isMobileScreen && showFilters) {
       document.body.style.overflow = 'hidden';
     }
+
     return () => {
       document.body.style.overflow = 'visible';
     };
   }, [isMobileScreen, showFilters]);
 
   useEffect(() => {
-    if (isMobileScreen) {
-      console.log(isMobileScreen);
-      setShowFilters(false);
-    } else {
-      setShowFilters(true);
-    }
+    setShowFilters(!isMobileScreen);
   }, [isMobileScreen]);
 
-  console.log(isMobileScreen);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

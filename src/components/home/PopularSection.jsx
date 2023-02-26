@@ -12,7 +12,6 @@ import LockIcon from '../../assets/svg/lock-icon.svg';
 
 import 'swiper/css';
 import 'swiper/css/scrollbar';
-import './custom-swiper-styles.css';
 
 const PopularSection = () => {
   const swiperRef = useRef();

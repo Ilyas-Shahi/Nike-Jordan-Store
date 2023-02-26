@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { setSortFilter } from '../../redux-store/filtersSlice';
 
 import FiltersIcon from '../../assets/svg/filters-icon.svg';
 import DownChevron from '../../assets/svg/chevron-down.svg';
 import useScrollTrigger from '../../hooks/useScrollTrigger';
-import { setSortFilter } from '../../redux-store/filtersSlice';
 
 const sortOptions = [
   'Featured',

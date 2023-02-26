@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 
+import { setSortFilter } from '../../redux-store/filtersSlice';
+
 import FormCheck from '../layout/FormCheck';
 import FilterColor from './FilterColor';
 import FilterOption from './FilterOption';
 
 import CrossIcon from '../../assets/svg/cross-icon.svg';
-import { setSortFilter } from '../../redux-store/filtersSlice';
 
 const FiltersSidebar = ({ handleShowFilters }) => {
   const sortBy = useSelector((state) => state.filters.sortBy);
@@ -37,7 +38,7 @@ const FiltersSidebar = ({ handleShowFilters }) => {
               value="Featured"
               name="sort"
               id="Featured"
-              checked={sortBy === 'Featured'}
+              defaultChecked={sortBy === 'Featured'}
             />
             <label
               htmlFor="Featured"
@@ -54,7 +55,7 @@ const FiltersSidebar = ({ handleShowFilters }) => {
               value="Newest"
               name="sort"
               id="Newest"
-              checked={sortBy === 'Newest'}
+              defaultChecked={sortBy === 'Newest'}
             />
             <label
               htmlFor="Newest"
@@ -71,7 +72,7 @@ const FiltersSidebar = ({ handleShowFilters }) => {
               value="Price: High-Low"
               name="sort"
               id="Price: High-Low"
-              checked={sortBy === 'Price: High-Low'}
+              defaultChecked={sortBy === 'Price: High-Low'}
             />
             <label
               htmlFor="Price: High-Low"
@@ -88,7 +89,7 @@ const FiltersSidebar = ({ handleShowFilters }) => {
               value="Price: Low-High"
               name="sort"
               id="Price: Low-High"
-              checked={sortBy === 'Price: Low-High'}
+              defaultChecked={sortBy === 'Price: Low-High'}
             />
             <label
               htmlFor="Price: Low-High"

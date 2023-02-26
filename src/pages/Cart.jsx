@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import Bag from '../components/cart/Bag';
@@ -15,6 +15,10 @@ const Cart = () => {
 
     setTotal(bagTotals.reduce((a, c) => a + c));
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="max-w-[1180px] p-4 md:p-12 mx-auto">

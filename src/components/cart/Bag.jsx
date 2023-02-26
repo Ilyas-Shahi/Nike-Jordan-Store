@@ -1,14 +1,15 @@
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToFavorites } from '../../redux-store/favoritesSlice';
+import { removeFromCart, updateCart } from '../../redux-store/cartSlice';
+
 import useFetch from '../../hooks/useFetch';
 
 import SanityImage from '../layout/SanityImage';
 import ChevronDown from '../../assets/svg/chevron-down.svg';
 import HeartIcon from '../../assets/svg/heart-icon.svg';
 import DeleteIcon from '../../assets/svg/delete-icon.svg';
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { addToFavorites } from '../../redux-store/favoritesSlice';
-import { removeFromCart, updateCart } from '../../redux-store/cartSlice';
 
 const Bag = ({ id, size, getTotal, index }) => {
   const productData = useFetch(`*[_id == '${id}']`)[0]?.result[0];

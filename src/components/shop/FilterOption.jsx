@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import ChevronDown from '../../assets/svg/chevron-down.svg';
 import {
   setColorFilter,
   setGenderFilter,
   setKidsFilter,
   setPriceFilter,
 } from '../../redux-store/filtersSlice';
+
+import ChevronDown from '../../assets/svg/chevron-down.svg';
 
 const FilterOption = ({ children, title }) => {
   const [showOption, setShowOption] = useState(true);

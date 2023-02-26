@@ -1,8 +1,9 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import useFetch from '../../hooks/useFetch';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../redux-store/cartSlice';
 import { removeFromFavorites } from '../../redux-store/favoritesSlice';
+
+import useFetch from '../../hooks/useFetch';
 import SanityImage from '../layout/SanityImage';
 
 const FavoritesSection = () => {

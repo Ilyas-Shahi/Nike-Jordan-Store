@@ -2,24 +2,26 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import useFetch from '../../hooks/useFetch';
+import { showNotification } from '../../redux-store/notificationSlice';
 import { addToCart } from '../../redux-store/cartSlice';
 import {
   addToFavorites,
   removeFromFavorites,
 } from '../../redux-store/favoritesSlice';
+import useFetch from '../../hooks/useFetch';
+import useScrollTrigger from '../../hooks/useScrollTrigger';
+
 import Reviews from './Reviews';
 
-import SanityImage from '../layout/SanityImage';
 import KlarnaLogo from '../../assets/svg/klarna-logo-black.svg';
 import HeartIcon from '../../assets/svg/heart-icon.svg';
 import HeartFilledIcon from '../../assets/svg/heart-filled.svg';
 import ShippingReturns from './ShippingReturns';
-import { showNotification } from '../../redux-store/notificationSlice';
-import ProductImagesSlider from './ProductImagesSlider';
+import ProductPicSliderMob from './ProductPicSliderMob';
+import ProductPicSlider from './ProductPicSlider';
 
 const SingleProduct = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [selectedSize, setSelectedSize] = useState();
 
   const [noSize, setNoSize] = useState(
@@ -79,14 +81,12 @@ const SingleProduct = () => {
 
   return (
     <>
-      <div className="md:flex p-6 md:p-12 pb-40 leading-relaxed">
-        <div className="hidden md:grid w-2/3 grid-cols-2 gap-3 auto-rows-max md:pl-6 lg:pl-20 pr-6">
-          {productData?.gallery.images.map((image, index) => (
-            <SanityImage key={index} imageRef={image.asset._ref} />
-          ))}
+      <div className="p-6 pb-40 mx-auto leading-relaxed md:flex md:p-12 md:pb-44 max-w-7xl">
+        <div className="hidden w-3/5 md:block md:px-0 2lg:px-12">
+          <ProductPicSlider images={productData?.gallery.images} />
         </div>
 
-        <div className="md:w-1/3 md:px-6 lg:px-12">
+        <div className="md:w-2/5 md:px-6 lg:px-12">
           {productData?.specialty && (
             <p className="mb-1 font-light text-amber-800">
               {productData?.specialty}
@@ -105,9 +105,9 @@ const SingleProduct = () => {
 
           <p className="mt-4 mb-10 text-lg font-light">${productData?.price}</p>
 
-          <ProductImagesSlider images={productData?.gallery.images} />
+          <ProductPicSliderMob images={productData?.gallery.images} />
 
-          <p className="flex mt-14 md:mt-0 justify-between mb-2">
+          <p className="flex justify-between mb-2 mt-14 md:mt-0">
             <span className={`${noSize && 'text-red-600'}`}>Select Size</span>
             <span>Size Guide</span>
           </p>
